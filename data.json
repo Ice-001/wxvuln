@@ -39293,5 +39293,13 @@
     "https://mp.weixin.qq.com/s/kL9JNNDwCzQGqm1wO10tuQ": "【漏洞通告】nginx-ui 未授权备份下载与加密密钥泄露漏洞(CVE-2026-27944)",
     "https://mp.weixin.qq.com/s/SKEzv5hoDlSdkUVUbe3fmg": "OpenClaw 近期安全漏洞、风险问题汇总",
     "https://mp.weixin.qq.com/s/-yzIzXoPhbteU0_kgSNxqQ": "使用大宝贝进行填满，最终成功绕过某为云WAF进行SQL注入",
-    "https://mp.weixin.qq.com/s/U3kLC4b253v6gGWScMtE9A": "【已复现】Nginx UI 未授权备份下载与加密密钥泄露漏洞（CVE-2026-27944）"
+    "https://mp.weixin.qq.com/s/U3kLC4b253v6gGWScMtE9A": "【已复现】Nginx UI 未授权备份下载与加密密钥泄露漏洞（CVE-2026-27944）",
+    "https://mp.weixin.qq.com/s/6tMsGOytCk10Edkeet_2DQ": "Nginx UI 权限绕过与备份解密漏洞？可能RCE哦 | CVE-2026-27944 复现&amp;研究",
+    "https://mp.weixin.qq.com/s/-sbgSBK5_iHaWYzO1Koztw": "记一次教育行业SRC挖掘",
+    "https://mp.weixin.qq.com/s/m8Sou9qRe_XI9YhI3UxTAw": "欧盟议会情报平台：AI深度政治情报报告",
+    "https://mp.weixin.qq.com/s/ErJdufrYuPkiMQTRmtm-TQ": "跟着红队笔记打靶：LAMPsecurity-CTF4",
+    "https://mp.weixin.qq.com/s/8Q7pLAH5wF9BS0hbGeUEKQ": "从头顺到尾的渗透测试",
+    "https://mp.weixin.qq.com/s/yhRDO4t-mp3leQfGf19e6Q": "Nginx UI 信息泄露漏洞(CVE-2026-27944)（内附exp链接）",
+    "https://mp.weixin.qq.com/s/7_RfPq7oKx1s5Zu58_AmRQ": "WolfShell 2.5 内存加载exe插件内网扫描器",
+    "https://mp.weixin.qq.com/s/ghIII4QzdGrhwp6xOjldmA": "BadToken！AI 后门攻击新杀招"
 }
