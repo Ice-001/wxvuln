@@ -40096,5 +40096,20 @@
     "https://mp.weixin.qq.com/s/jv6H39mFH9gglbcCxipd2Q": "将超出漏洞范围的 HTML 注入升级为高危 9.3 分 XSS 漏洞（绕过 WAF）",
     "https://mp.weixin.qq.com/s/M2tQtnhoV-GT3C5nQ6uzHA": "黑客如何绕过 AI 安全防护",
     "https://mp.weixin.qq.com/s/Obhv1RUSYf6X2hBK38nZEA": "一次诡异的TCP四次挥手丢包案：防火墙、ECMP与5秒的博弈",
-    "https://mp.weixin.qq.com/s/e1vcBZglNIj8NWqC907ZjA": "Claude Code、Gemini实测暴露漏洞，仍在重复十年前安全错误；中国互联网金融协会：关于OpenClaw在互联网金融行业应用安全的风险提示|牛览"
+    "https://mp.weixin.qq.com/s/e1vcBZglNIj8NWqC907ZjA": "Claude Code、Gemini实测暴露漏洞，仍在重复十年前安全错误；中国互联网金融协会：关于OpenClaw在互联网金融行业应用安全的风险提示|牛览",
+    "https://mp.weixin.qq.com/s/5JjRop6UWAwXBbVfZLsDOw": "Phoenix僵尸网络",
+    "https://mp.weixin.qq.com/s/E1zb8_RV3oF5aEU0_Yrw4A": "【已复现】OpenClaw WebSocket共享令牌权限提升漏洞(QVD-2026-13829)安全风险通告",
+    "https://mp.weixin.qq.com/s/xrvU9a4L0BfHwXhVpBE6qw": "DDoS攻击风险预警通告｜近期国内出现大规模持续性扫段攻击活动",
+    "https://mp.weixin.qq.com/s/36x_CgbTO9qJvEG7ZGBKbw": "WatchVuln_Web高价值漏洞采集与推送",
+    "https://mp.weixin.qq.com/s/kmUUyCTw4kIBgUp4WapOtg": "本月目前的瓜：AI龙虾爆雷、零日漏洞频发、黑产遭重创",
+    "https://mp.weixin.qq.com/s/foNbn5x8HOH2vb4_ERoR3A": "白帽黑客发现Injective中危及5亿美元资产的漏洞，仅获5万美元奖励且尚未支付",
+    "https://mp.weixin.qq.com/s/h59qNs4zbGVaHUgVcK5obA": "[ 深度洞察 ] 自动驾驶时代的黑客：Shannon 如何将“漏洞扫描”升维为“全自动渗透”？",
+    "https://mp.weixin.qq.com/s/OCVDOzEr3RlkZTEMj_rpRA": "RSAC 2026创新沙盒 | Geordie AI：企业 AI Agent 安全治理体系的构建者",
+    "https://mp.weixin.qq.com/s/7zW53OtvUrxpUhyxjJG19w": "安全工程师推荐（社招）",
+    "https://mp.weixin.qq.com/s/L7estJqk3z0DBtIjG8wxCQ": "工信部通报24款APP！乱跳转、强授权、难关闭……合规警钟为谁而鸣？附梆梆安全合规建议指南",
+    "https://mp.weixin.qq.com/s/1CQiy74TQhtIGTH6ssAhiA": "上周关注度较高的产品安全漏洞(20260309-20260315)",
+    "https://mp.weixin.qq.com/s/wIQU2Get1LCnnpWYojj9GQ": "海云安以Skills技能重塑软件供应链安全，打造国内开发安全综合智能体",
+    "https://mp.weixin.qq.com/s/F-PLgFH917jG3JAbjcMgyA": "【复现】泛微 E-cology10 远程代码执行漏洞风险通告",
+    "https://mp.weixin.qq.com/s/zZe0a-70aIC_VT0x6jSsdg": "企业内网敏感文件破解：Office/PDF/压缩包/KeePass 爆破实战",
+    "https://mp.weixin.qq.com/s/_iZwzVbKl7ypREj-QFwvhg": "感染便成为恶意流量代理!批量华硕路由器正沦为僵尸网络"
 }
