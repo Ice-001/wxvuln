@@ -40212,5 +40212,16 @@
     "https://mp.weixin.qq.com/s/k2bJ3e2YN1L-vBt5rWOjOQ": "【附全网首发POC】CVE-2026-1994 WordPress管理员密码修改漏洞 复现及漏洞环境",
     "https://mp.weixin.qq.com/s/eIVGGIiJAFyxP8_C7s7L8w": "一款用于在 Mac 和 Windows 上快速启动和管理各类安全工具的渗透工具箱",
     "https://mp.weixin.qq.com/s/uVgm3y0WG4j1gpslZ3_7GA": "TSE 2026|TrafficLLM —— 加密流量分析的混合 LoRA 专家实现",
-    "https://mp.weixin.qq.com/s/CuwDCPskqa1vnVTPlLNdDQ": "Evasion SubAgents：这个AI框架能帮你轻松组装免杀的木马加载器"
+    "https://mp.weixin.qq.com/s/CuwDCPskqa1vnVTPlLNdDQ": "Evasion SubAgents：这个AI框架能帮你轻松组装免杀的木马加载器",
+    "https://mp.weixin.qq.com/s/2XeK9bJ9cGCNTJ2N_x_I0g": "CVE-2026-1312: Django order_by结合FilteredRelation使用导致的SQL注入漏洞",
+    "https://mp.weixin.qq.com/s/eguNMDeMClkV9t7MMoi-Fw": "深度解析：Spring MVC代码审计实战",
+    "https://mp.weixin.qq.com/s/hm17mPMfc90i-6m7iKJOUA": "大模型时代的红蓝对抗：Prompt 注入诱导与 RAG 架构的数据投毒实战",
+    "https://mp.weixin.qq.com/s/HUbkCUNstiF1yUHIe68hrw": "【高危漏洞预警】Libucl UCL输入处理漏洞 (CVE-2026-0708)",
+    "https://mp.weixin.qq.com/s/rF2w1rR1L-ZLhFsD5jFEaw": "ADPulse：开源的内网渗透和内网安全审计工具",
+    "https://mp.weixin.qq.com/s/lVWQQUIj7U4AB4c7ZXfAIg": "安全预警｜校园小程序高危 SQL 注入漏洞曝光，师生信息安全需警惕！",
+    "https://mp.weixin.qq.com/s/L57v_hJg86V--E6YrG9EQA": "AI自动化渗透测试平台设计研究",
+    "https://mp.weixin.qq.com/s/VbriYtKFu65Gz4u82bHiaw": "大模型安全深度学习指南：数据投毒与后门攻击专题(1)",
+    "https://mp.weixin.qq.com/s/nOK67YdqZgk8OA6UaZ1mSg": "C13-S04 启明星辰：OpenClaw类智能应用安全思维总览和措施导引0317版",
+    "https://mp.weixin.qq.com/s/h_OwpMoxi9aivp7eoQr_kQ": "论文研读与思考|用于入侵检测的多通道深度特征学习",
+    "https://mp.weixin.qq.com/s/xxYMeGLX0YiyNah7y9IThA": "基于多维度主动防御的银狐木马综合防控体系"
 }
