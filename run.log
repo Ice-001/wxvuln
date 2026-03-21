@@ -48501,3 +48501,37 @@
 2026-03-21 05:01:09,598 - INFO - 已更新data.json，添加了 38 个URL
 2026-03-21 05:01:09,599 - INFO - 已创建每日报告: md/2026-03-21.md
 2026-03-21 05:01:09,599 - INFO - === 执行完成 ===
+2026-03-21 08:19:33,255 - INFO - === 开始执行微信文章归档工具 ===
+2026-03-21 08:19:33,256 - INFO - 数据文件: data.json
+2026-03-21 08:19:33,256 - INFO - 可执行文件: ./bin/wechatmp2markdown-v1.1.11_linux_amd64
+2026-03-21 08:19:33,256 - INFO - 文档目录: doc
+2026-03-21 08:19:33,319 - INFO - 已加载 40586 条历史记录
+2026-03-21 08:19:33,319 - INFO - === 开始今日拉取 ===
+2026-03-21 08:19:33,320 - INFO - 开始获取Doonsec RSS
+2026-03-21 08:19:33,320 - INFO - 目标日期: 2026-03-21
+2026-03-21 08:19:35,859 - INFO - Doonsec RSS请求成功
+2026-03-21 08:19:35,860 - INFO - RSS中共有 200 个条目
+2026-03-21 08:19:35,861 - INFO - Doonsec获取到 113 个2026-03-21的微信文章URL
+2026-03-21 08:19:35,862 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-21.md
+2026-03-21 08:19:35,898 - INFO - ChainReactors md文件下载状态码: 404
+2026-03-21 08:19:35,898 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-21.md 状态码: 404
+2026-03-21 08:19:35,899 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-03-21.md
+2026-03-21 08:19:35,939 - INFO - BruceFeIix md文件下载状态码: 200
+2026-03-21 08:19:35,940 - INFO - BruceFeIix获取到 185 个URL
+2026-03-21 08:19:35,940 - INFO - === 开始处理 2026-03-21 的数据 ===
+2026-03-21 08:19:35,940 - INFO - Doonsec原始数据: 113 个
+2026-03-21 08:19:35,940 - INFO - ChainReactors原始数据: 0 个
+2026-03-21 08:19:35,941 - INFO - BruceFeIix原始数据: 185 个
+2026-03-21 08:19:35,941 - INFO - 开始处理Doonsec数据...
+2026-03-21 08:19:35,941 - INFO - 开始处理ChainReactors数据...
+2026-03-21 08:19:35,941 - INFO - 开始处理BruceFeIix数据...
+2026-03-21 08:19:35,941 - INFO - 去重后共 210 个URL待处理，跳过 88 个重复URL
+2026-03-21 08:19:35,941 - INFO - 去重后统计 - Doonsec: 87 个, ChainReactors: 0 个, BruceFeIix: 123 个
+2026-03-21 08:19:35,941 - INFO - === 开始关键词过滤 ===
+2026-03-21 08:19:35,948 - INFO - 关键词过滤: 匹配 2 个，跳过 208 个
+2026-03-21 08:19:35,948 - INFO - 关键词过滤后统计 - Doonsec: 2 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-03-21 08:19:36,013 - INFO - 已创建每日报告: md/2026-03-21.md
+2026-03-21 08:19:36,013 - INFO - === 跳过二进制文件处理，只更新data.json ===
+2026-03-21 08:19:36,080 - INFO - 已更新data.json，添加了 2 个URL
+2026-03-21 08:19:36,080 - INFO - 已创建每日报告: md/2026-03-21.md
+2026-03-21 08:19:36,080 - INFO - === 执行完成 ===
