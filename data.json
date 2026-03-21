@@ -40599,5 +40599,10 @@
     "https://mp.weixin.qq.com/s/zL2NkO0l0WuELlJR6GSFvA": "【先进安服分享】安全运营报价单的致命陷阱",
     "https://mp.weixin.qq.com/s/QwcIUu6144mQygqn5IFrSg": "pbootcms SQL注入漏洞分析",
     "https://mp.weixin.qq.com/s/UoSfDePfvoxwpyoWkDz0hQ": "NDSS 2026杰出论文奖丨复旦大学计算与智能创新学院系统软件与安全实验室研究成果首次系统揭示邮箱别名机制的身份混淆安全漏洞",
-    "https://mp.weixin.qq.com/s/7TrXvOX2eSeGKPM6bd3LyA": "安全预警｜校园小程序高危SQL注入漏洞曝光，师生信息安全需警惕！（渗透测试视角）"
+    "https://mp.weixin.qq.com/s/7TrXvOX2eSeGKPM6bd3LyA": "安全预警｜校园小程序高危SQL注入漏洞曝光，师生信息安全需警惕！（渗透测试视角）",
+    "https://mp.weixin.qq.com/s/TqidPtWAX_Ysxy-t0ICZcg": "Omnissa Workspace ONE UEM存在敏感信息泄漏漏洞（CVE-2025-25231） 附POC",
+    "https://mp.weixin.qq.com/s/krfaBaXqzjFMAX-pEQJIlw": "滥用漏洞驱动 (BYOVD) 实现任意内核读写并绕过 PPL 保护",
+    "https://mp.weixin.qq.com/s/UAh9CjgpmAk-k3FoC0Yrmg": "Burp Suite 文件上传漏洞自动化测试插件 1000+ payload",
+    "https://mp.weixin.qq.com/s/EunSGK5QZxS8ctNplWuxIw": "为什么你在顶级SRC挖不到sql注入",
+    "https://mp.weixin.qq.com/s/YQuXEKZNoehxwiyD-59ANg": "用Agent打败Agent：LLM智能体漏洞，正在进入自动化挖掘阶段（Agentfuzz）"
 }
