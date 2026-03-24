@@ -96,7 +96,7 @@ def get_dingtalk_robot_url():
 
 def send_dingtalk_notification(title, content):
     """
-    发送钉钉群通知（加签模式）
+    发送钉钉群通知（加签模式），支持超长内容分片发送
     """
     logger.info("开始 send_dingtalk_notification")
     robot_url = get_dingtalk_robot_url()
@@ -105,31 +105,52 @@ def send_dingtalk_notification(title, content):
         logger.warning("钉钉机器人配置不完整，跳过通知")
         return False
 
-    logger.info(f"准备发送请求...")
-    data = {
-        "msgtype": "markdown",
-        "markdown": {
-            "title": title,
-            "text": content
+    MAX_LENGTH = 4000
+
+    def send_part(part_title, part_content):
+        data = {
+            "msgtype": "markdown",
+            "markdown": {
+                "title": part_title,
+                "text": part_content
+            }
         }
-    }
-
-    try:
-        logger.info(f"发送POST请求到钉钉...")
-        response = requests.post(robot_url, json=data, headers={"Content-Type": "application/json"})
-        logger.info(f"响应状态码: {response.status_code}")
-        result = response.json()
-        logger.info(f"响应内容: {result}")
-
-        if result.get("errcode") == 0:
-            logger.info(f"钉钉通知发送成功: {title}")
-            return True
-        else:
-            logger.error(f"钉钉通知发送失败: {result.get('errmsg')}")
+        try:
+            response = requests.post(robot_url, json=data, headers={"Content-Type": "application/json"})
+            result = response.json()
+            if result.get("errcode") == 0:
+                logger.info(f"分片发送成功: {part_title[:50]}")
+                return True
+            else:
+                logger.error(f"发送失败: {result.get('errmsg')}")
+                return False
+        except Exception as e:
+            logger.error(f"发送异常: {e}")
             return False
-    except Exception as e:
-        logger.error(f"钉钉通知发送异常: {e}")
-        return False
+
+    if len(content) <= MAX_LENGTH:
+        return send_part(title, content)
+
+    parts = []
+    lines = content.split('\n')
+    current = ""
+    for line in lines:
+        if len(current) + len(line) + 1 > MAX_LENGTH:
+            if current:
+                parts.append(current)
+            current = line
+        else:
+            current += ("\n" if current else "") + line
+    if current:
+        parts.append(current)
+
+    logger.info(f"内容长度 {len(content)} 字符，分 {len(parts)} 片发送")
+
+    for i, part in enumerate(parts):
+        part_title = f"{title} ({i+1}/{len(parts)})"
+        send_part(part_title, part)
+
+    return True
 
 
 def send_task_summary_notification(date_str, total_urls, added_count, skipped_count):
@@ -165,7 +186,7 @@ def send_task_summary_notification(date_str, total_urls, added_count, skipped_co
 
 def notify_daily_report(date_str, md_dir="md"):
     """
-    发送每日报告的钉钉通知
+    发送每日报告的钉钉通知（发送完整md内容）
     """
     logger.info("开始 notify_daily_report")
     appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
@@ -189,30 +210,9 @@ def notify_daily_report(date_str, md_dir="md"):
     with open(filepath, 'r', encoding='utf-8') as f:
         md_content = f.read()
 
-    title = f"📢 {date_str} 安全威胁态势报告"
+    title = f"📢 {date_str} 安全资讯 ({len(md_content.split(chr(10)))}条)"
 
-    lines = md_content.split('\n')
-    summary = []
-    in_data_section = False
-    line_count = 0
-
-    for line in lines:
-        if line.startswith('## 📊 数据概览'):
-            in_data_section = True
-            summary.append(line)
-            continue
-        if in_data_section:
-            if line.startswith('##'):
-                break
-            summary.append(line)
-            line_count += 1
-            if line_count > 15:
-                break
-
-    content = "### " + "\n### ".join(summary[:12])
-    content += f"\n\n📅 报告日期: {date_str}\n📂 归档路径: `md/{year}/{month}/{date_str}.md`"
-
-    send_dingtalk_notification(title, content)
+    send_dingtalk_notification(title, md_content)
 
 def get_doonsec_url(target_date=None):
     '''从 Doonsec RSS 获取指定日期的URL、日期和标题，返回(url, date, title)元组列表'''
@@ -535,172 +535,60 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     month = dt.strftime('%Y-%m')
     month_dir = os.path.join(md_dir, year, month)
     os.makedirs(month_dir, exist_ok=True)
-    
+
     filename = f"{date_str}.md"
     filepath = os.path.join(month_dir, filename)
-    
-    # 统计信息
+
     total_urls = len(urls_info)
     sources = {}
     for _, source, _, _ in urls_info:
         sources[source] = sources.get(source, 0) + 1
-    
-    # 安全威胁分析
+
     threat_stats, threat_details = analyze_security_threats(urls_info)
     vuln_stats = analyze_vulnerability_types(urls_info)
-    
-    # MD模板
-    md_content = f"""# {date_str} 安全威胁态势报告
 
-## 📊 数据概览
+    md_content = f"""# {date_str} 安全资讯
 
-- **总文章数**: {total_urls}
-- **数据源分布**:
+## 数据概览
+
+- **总计**: {total_urls} 篇
 """
-    
+
     for source, count in sources.items():
-        md_content += f"  - {source}: {count}篇\n"
-    
-    md_content += f"""
-## 🚨 安全威胁态势分析
+        md_content += f"- {source}: {count}篇\n"
 
-### 威胁类型分布
-"""
-    
-    # 按威胁数量排序
+    md_content += "\n## 威胁类型分布\n\n"
+
     sorted_threats = sorted(threat_stats.items(), key=lambda x: x[1], reverse=True)
     for threat_type, count in sorted_threats:
         if count > 0:
-            md_content += f"- **{threat_type}**: {count}篇\n"
-    
-    md_content += f"""
-### 漏洞类型分析
-"""
-    
-    # 按漏洞数量排序
+            md_content += f"- {threat_type}: {count}篇\n"
+
+    md_content += "\n## 漏洞类型分布\n\n"
+
     sorted_vulns = sorted(vuln_stats.items(), key=lambda x: x[1], reverse=True)
     for vuln_type, count in sorted_vulns:
         if count > 0:
-            md_content += f"- **{vuln_type}**: {count}篇\n"
-    
-    md_content += f"""
-## 🔍 匹配规则
+            md_content += f"- {vuln_type}: {count}篇\n"
 
-### 关键词匹配规则
+    md_content += "\n## 🎯 威胁详情分析\n\n"
 
-#### 🔍 漏洞利用与攻击技术
-`复现|漏洞|漏洞利用|漏洞挖掘|漏洞检测|漏洞分析|漏洞修复|漏洞防护|漏洞扫描|漏洞评估|漏洞管理|漏洞响应|漏洞预警|漏洞通报|SQL注入|XSS攻击|CSRF攻击|文件上传|文件包含|命令注入|代码注入|反序列化|缓冲区溢出|权限提升|越权访问|未授权访问|逻辑漏洞|配置错误|弱口令|默认密码|硬编码|敏感信息泄露|注入|XSS|内网|域控|RCE|代码执行|命令执行|远程代码执行|本地代码执行|权限绕过|信息泄露|拒绝服务|内存破坏|整数溢出|格式化字符串|竞争条件|时间竞争|路径遍历|目录遍历|文件包含|命令注入|代码注入`
-
-#### 🕵️ 威胁情报与APT
-`威胁情报|威胁检测|威胁狩猎|威胁分析|威胁建模|威胁评估|威胁预警|情报收集|情报分析|情报共享|情报平台|情报系统|情报运营|恶意软件|恶意代码|恶意行为|恶意活动|恶意攻击|恶意威胁|APT攻击|APT组织|APT活动|APT威胁|APT检测|APT分析|威胁情报平台|威胁情报系统|威胁情报分析|威胁情报共享`
-
-#### 🚨 应急响应与溯源
-`应急响应|安全响应|事件响应|应急处理|应急管理|应急演练|溯源分析|攻击溯源|威胁溯源|恶意代码溯源|网络溯源|数字取证|取证分析|证据收集|证据保全|证据链|时间线分析|攻击链分析|威胁狩猎|威胁追踪|威胁定位|威胁识别|威胁分类|威胁评估|安全事件|安全告警|安全日志|安全监控|安全检测|安全分析`
-
-#### 🛡️ 安全运营与管理
-`安全运营|安全运维|安全管理|安全治理|安全合规|安全审计|安全监控|安全分析|安全评估|安全测试|安全培训|安全意识|安全架构|安全设计|安全开发|安全部署|安全配置|安全策略|安全控制|安全防护|安全检测|安全响应|安全恢复|安全备份|安全日志|安全事件|安全告警|安全报告|安全指标|安全度量|安全工具|安全平台|安全系统|安全服务|安全咨询|安全外包|安全团队|安全专家|安全工程师|安全分析师|安全管理员|漏洞运营|SRC|安全运营框架|安全治理框架`
-
-#### ⚔️ 红队蓝队与攻防演练
-`红队|蓝队|紫队|攻防演练|渗透测试|安全评估|漏洞扫描|安全测试|安全审计|安全评估|风险评估`
-
-#### 🦠 特定攻击技术与恶意软件
-`社会工程学|钓鱼攻击|水坑攻击|供应链攻击|零日攻击|侧信道攻击|中间人攻击|拒绝服务|分布式拒绝服务|DDoS|勒索软件|木马|后门|病毒|蠕虫|僵尸网络|银狐`
-
-#### 📋 漏洞编号与标准
-`CVE-|CNVD-|CNNVD-|XVE-|QVD-|POC|EXP|0day|1day|nday|CWE-|ISO27001|NIST|OWASP|CIS|SOC|SIEM|SOAR|威胁情报标准|安全运营框架|安全治理框架`
-
-#### 🔐 数据安全与隐私
-`信息泄漏|数据泄露|隐私泄露|数据安全|隐私保护|身份认证|访问控制|会话管理|加密算法|加密协议|数字签名|证书管理|密钥管理|密码学|密码破解|多因子认证|单点登录`
-
-#### ☁️ 云安全与新兴技术
-`云安全|容器安全|DevSecOps|云原生安全|微服务安全|区块链安全|人工智能安全|机器学习安全|深度学习安全|量子计算威胁|AI安全威胁|5G安全威胁|边缘计算安全|零信任架构|微分段|微隔离|自适应安全|智能安全`
-
-#### 💻 应用与系统安全
-`应用安全|Web安全|移动安全|Web应用安全|移动应用安全|API安全|Windows安全|Linux安全|macOS安全|Android安全|iOS安全`
-
-#### 🏭 行业与基础设施安全
-`物联网安全|工业安全|供应链安全|金融安全|医疗安全|教育安全|政府安全|企业安全|关键基础设施安全|工业控制系统安全|智能电网安全`
-
-#### 🛠️ 安全工具与技术
-`防火墙|入侵检测|入侵防护|安全网关|VPN|加密|审计日志|安全扫描|漏洞扫描|渗透测试|代码审计|安全评估`
-
-### URL匹配
-`https://mp.weixin.qq.com/(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*]|(?:%[0-9a-fA-F][0-9a-fA-F]))+`
-
-## 📰 文章详细列表
-
-"""
-    
-    # 按来源分组
-    source_groups = {}
-    for url, source, title, article_date in urls_info:
-        if source not in source_groups:
-            source_groups[source] = []
-        source_groups[source].append((url, title, article_date))
-    
-    for source, articles in source_groups.items():
-        md_content += f"### {source}\n\n"
-        for url, title, article_date in articles:
-            date_info = f" (发布日期: {article_date})" if article_date else ""
-            md_content += f"- [{title}]({url}){date_info}\n"
-        md_content += "\n"
-    
-    # 威胁详情
-    md_content += f"""
-## 🎯 威胁详情分析
-
-"""
-    
     for threat_type, articles in threat_details.items():
         if articles:
             md_content += f"### {threat_type}\n\n"
-            md_content += "| 序号 | 文章标题 | 来源 | 链接 |\n"
-            md_content += "|------|----------|------|------|\n"
+            md_content += "| 序号 | 来源 | 文章标题 |\n|------|------|----------|\n"
             for idx, (title, source, url) in enumerate(articles, 1):
-                md_content += f"| {idx} | {title} | {source} | [{url}]({url}) |\n"
+                md_content += f"| {idx} | {source} | [{title}]({url}) |\n"
             md_content += "\n"
-    
-    md_content += f"""
-## 📁 归档路径
 
-文章已归档到: `md/{date_str[:4]}/{int(date_str[5:7]):02d}/{date_str}.md`
+    md_content += f"""---
 
-## 🔗 数据源说明
-
-- **ChainReactors**: GitHub安全文章聚合，专注于漏洞复现和技术分析
-- **BruceFeIix**: 安全文章收集，涵盖威胁情报和安全运营
-- **Doonsec**: 安全资讯RSS，实时推送安全事件和漏洞预警
-
-## 📈 趋势分析
-
-### 今日重点关注
-"""
-    
-    # 找出今日最热门的威胁类型
-    if threat_stats:
-        top_threat = max(threat_stats.items(), key=lambda x: x[1])
-        md_content += f"- **{top_threat[0]}** 是今日主要威胁类型，共 {top_threat[1]} 篇相关文章\n"
-    
-    # 找出今日最热门的漏洞类型
-    if vuln_stats:
-        top_vuln = max(vuln_stats.items(), key=lambda x: x[1])
-        md_content += f"- **{top_vuln[0]}** 是今日主要漏洞类型，共 {top_vuln[1]} 篇相关文章\n"
-    
-    md_content += f"""
-### 安全建议
-- 及时关注高危漏洞的修复进展
-- 加强供应链安全管理
-- 定期进行安全培训和意识提升
-- 建立完善的安全运营体系
-
----
 *生成时间: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
-*报告工具: 微信文章安全归档系统*
 """
-    
+
     with open(filepath, 'w', encoding='utf-8') as f:
         f.write(md_content)
-    
+
     logger.info(f"已创建每日报告: {filepath}")
     return filepath
 
