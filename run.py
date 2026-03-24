@@ -474,29 +474,58 @@ def analyze_security_threats(urls_info):
     """
     分析安全威胁态势
     """
+    ctf_subcategories = {
+        'WEB': ['WEB', 'Web安全', 'SQL注入', 'XSS', 'SSRF', 'CSRF', '文件上传', '文件包含', 'RCE', '命令注入', '反序列化', 'SSTI', '模板注入'],
+        'PWN': ['PWN', '二进制', '缓冲区溢出', '栈溢出', '堆溢出', '格式化字符串', 'house of', 'ROP', 'ret2', '栈迁移'],
+        'CRYPTO': ['Crypto', '密码学', '加密', 'RSA', 'AES', 'DES', '椭圆曲线', 'ECC', 'DH', '对称加密', '非对称加密', '侧信道'],
+        'REVERSE': ['Reverse', '逆向', '反编译', 'IDA', 'OD', 'x64dbg', '反汇编', '壳', '加壳', '脱壳'],
+        'MISC': ['Misc', '杂项', '隐写', '流量分析', '日志分析', '取证', '图片隐写', '音频隐写', '压缩包', '内存取证'],
+        'WP': ['WriteUp', 'WP', 'writeup', 'wp', '赛题', '解题', 'BugKu', 'CTFHub', 'AWD', '比赛', '攻防', 'CTF']
+    }
+
     threat_categories = {
         '漏洞利用': ['CVE', 'CNVD', 'CNNVD', 'XVE', 'QVD', 'POC', 'EXP', '0day', '1day', 'nday', '漏洞', '复现'],
         '攻击技术': ['注入', 'XSS', 'RCE', '代码执行', '命令执行', '内网', '域控'],
         '威胁情报': ['威胁情报', 'APT', '银狐', '勒索病毒', '应急响应'],
         '安全运营': ['安全运营', '漏洞运营', '情报运营', 'SRC'],
         '信息泄露': ['信息泄漏', '数据泄露', '配置泄露'],
-        '供应链': ['供应链', '第三方', '组件']
+        '供应链': ['供应链', '第三方', '组件'],
+        'CTF': list(set(keyword for keywords in ctf_subcategories.values() for keyword in keywords))
     }
-    
+
     threat_stats = {category: 0 for category in threat_categories.keys()}
     threat_details = {category: [] for category in threat_categories.keys()}
-    
+
     for url, source, title, date in urls_info:
         if not title:
             continue
         title_lower = title.lower()
+
+        matched_ctf = False
+        ctf_keyword = ""
+        ctf_sub = ""
         for category, keywords in threat_categories.items():
             for keyword in keywords:
                 if keyword.lower() in title_lower:
-                    threat_stats[category] += 1
-                    threat_details[category].append((title, source, url))
+                    if category == 'CTF' and not matched_ctf:
+                        matched_ctf = True
+                        for sub, sub_keywords in ctf_subcategories.items():
+                            for sub_kw in sub_keywords:
+                                if sub_kw.lower() in title_lower:
+                                    ctf_keyword = sub_kw
+                                    ctf_sub = sub
+                                    break
+                            if ctf_keyword:
+                                break
+                        threat_stats[category] += 1
+                        threat_details[category].append((title, source, url, ctf_keyword, ctf_sub))
+                    else:
+                        threat_stats[category] += 1
+                        threat_details[category].append((title, source, url, keyword, category))
                     break
-    
+            if matched_ctf or (category != 'CTF' and any(kw.lower() in title_lower for kw in keywords)):
+                break
+
     return threat_stats, threat_details
 
 def analyze_vulnerability_types(urls_info):
@@ -510,9 +539,10 @@ def analyze_vulnerability_types(urls_info):
         '网络攻击': ['钓鱼', '社会工程学', 'APT', '勒索软件'],
         '供应链': ['第三方组件', '开源漏洞', '依赖注入']
     }
-    
+
     vuln_stats = {vuln_type: 0 for vuln_type in vuln_types.keys()}
-    
+    vuln_details = {vuln_type: [] for vuln_type in vuln_types.keys()}
+
     for url, source, title, date in urls_info:
         if not title:
             continue
@@ -521,9 +551,11 @@ def analyze_vulnerability_types(urls_info):
             for keyword in keywords:
                 if keyword.lower() in title_lower:
                     vuln_stats[vuln_type] += 1
+                    vuln_details[vuln_type].append((title, source, url, keyword, vuln_type))
                     break
-    
-    return vuln_stats
+
+    return vuln_stats, vuln_details
+
 
 def escape_markdown(text):
     """转义Markdown特殊字符"""
@@ -559,7 +591,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
         sources[source] = sources.get(source, 0) + 1
 
     threat_stats, threat_details = analyze_security_threats(urls_info)
-    vuln_stats = analyze_vulnerability_types(urls_info)
+    vuln_stats, vuln_details = analyze_vulnerability_types(urls_info)
 
     md_content = f"""# {date_str} 安全资讯
 
@@ -590,9 +622,31 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     for threat_type, articles in threat_details.items():
         if articles:
             md_content += f"### {threat_type}\n\n"
-            md_content += "| 序号 | 来源 | 文章标题 |\n|------|------|----------|\n"
-            for idx, (title, source, url) in enumerate(articles, 1):
-                md_content += f"| {idx} | {source} | [{escape_markdown(title)}]({url}) |\n"
+            md_content += "| 序号 | 来源 | 文章标题 | 命中关键词 | 详细分类 |\n|------|------|----------|----------|----------|\n"
+            for idx, item in enumerate(articles, 1):
+                if len(item) == 5:
+                    title, source, url, keyword, sub_category = item
+                else:
+                    title, source, url = item[:3]
+                    keyword = ""
+                    sub_category = ""
+                md_content += f"| {idx} | {source} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} |\n"
+            md_content += "\n"
+
+    md_content += "\n## 🔧 漏洞详情分析\n\n"
+
+    for vuln_type, articles in vuln_details.items():
+        if articles:
+            md_content += f"### {vuln_type}\n\n"
+            md_content += "| 序号 | 来源 | 文章标题 | 命中关键词 | 详细分类 |\n|------|------|----------|----------|----------|\n"
+            for idx, item in enumerate(articles, 1):
+                if len(item) == 5:
+                    title, source, url, keyword, sub_category = item
+                else:
+                    title, source, url = item[:3]
+                    keyword = ""
+                    sub_category = ""
+                md_content += f"| {idx} | {source} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} |\n"
             md_content += "\n"
 
     md_content += f"""---
