@@ -4,15 +4,9 @@ import re
 import sys
 import json
 import xml.etree.ElementTree as ET
-import platform
-import tempfile
 import requests
-import shutil
-import subprocess
 import datetime
 import argparse
-import glob
-import calendar
 import logging
 
 # 配置日志
@@ -47,31 +41,6 @@ def read_json(path, default_data={}, encoding="utf8"):
         data = default_data
         write_json(path, data, encoding=encoding)
     return data
-
-def get_executable_path():
-    '''获取可执行文件路径'''
-    system = platform.system()
-    if system == 'Windows':
-        executable_path = './bin/wechatmp2markdown-v1.1.11_win64.exe'
-    else:
-        executable_path = './bin/wechatmp2markdown-v1.1.11_linux_amd64'
-    # 添加执行权限
-    os.chmod(executable_path, 0o755)
-    # 返回可执行文件的完整路径
-    return executable_path
-
-def get_md_path(executable_path,url):
-    '''获取md文件路径'''
-    temp_directory = tempfile.mkdtemp()
-    command = [executable_path, url, temp_directory, '--image=url']
-    subprocess.check_output(command)
-    for root, _, files in os.walk(temp_directory):
-        for file in files:
-            if file.endswith(".md"):
-                file_path = os.path.join(root, file)
-                yield file_path
-
-
 
 def get_doonsec_url(target_date=None):
     '''从 Doonsec RSS 获取指定日期的URL、日期和标题，返回(url, date, title)元组列表'''
@@ -251,8 +220,7 @@ def filter_by_keywords(urls_info):
     logger.info(f"关键词过滤: 匹配 {len(filtered_urls)} 个，跳过 {skipped_count} 个")
     return filtered_urls
 
-def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path, executable_path, skip_binary=False):
-    # 1. 先去重，收集所有待处理信息（带标题）
+def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path):
     logger.info(f"=== 开始处理 {date_str} 的数据 ===")
     logger.info(f"Doonsec原始数据: {len(doonsec_list)} 个")
     logger.info(f"ChainReactors原始数据: {len(chainreactors_urls)} 个")
@@ -262,8 +230,6 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     url_set = set()
     skipped_count = 0
     
-    # Doonsec
-    logger.info("开始处理Doonsec数据...")
     for url, ddate, title in doonsec_list:
         use_date = ddate if ddate else date_str
         if url in data or url in url_set:
@@ -274,8 +240,6 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
         url_set.add(url)
         logger.debug(f"添加Doonsec URL: {url}")
     
-    # ChainReactors
-    logger.info("开始处理ChainReactors数据...")
     for url, title in chainreactors_urls:
         if url in data or url in url_set:
             logger.debug(f"跳过已存在的URL: {url}")
@@ -285,8 +249,6 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
         url_set.add(url)
         logger.debug(f"添加ChainReactors URL: {url}")
     
-    # BruceFeIix
-    logger.info("开始处理BruceFeIix数据...")
     for url, title in brucefeiix_urls:
         if url in data or url in url_set:
             logger.debug(f"跳过已存在的URL: {url}")
@@ -298,84 +260,39 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     
     logger.info(f"去重后共 {len(urls_info)} 个URL待处理，跳过 {skipped_count} 个重复URL")
     
-    # 按数据源统计
     doonsec_count = len([u for u in urls_info if u[1] == "Doonsec"])
     chainreactors_count = len([u for u in urls_info if u[1] == "ChainReactors"])
     brucefeiix_count = len([u for u in urls_info if u[1] == "BruceFeIix"])
     logger.info(f"去重后统计 - Doonsec: {doonsec_count} 个, ChainReactors: {chainreactors_count} 个, BruceFeIix: {brucefeiix_count} 个")
     
-    # 2. 关键词过滤
     logger.info("=== 开始关键词过滤 ===")
     urls_info = filter_by_keywords(urls_info)
     
-    # 过滤后按数据源统计
     doonsec_count = len([u for u in urls_info if u[1] == "Doonsec"])
     chainreactors_count = len([u for u in urls_info if u[1] == "ChainReactors"])
     brucefeiix_count = len([u for u in urls_info if u[1] == "BruceFeIix"])
     logger.info(f"关键词过滤后统计 - Doonsec: {doonsec_count} 个, ChainReactors: {chainreactors_count} 个, BruceFeIix: {brucefeiix_count} 个")
     
-    # 3. 先生成当日md报告（标题和链接同步）
     if urls_info:
         create_daily_md_report(date_str, urls_info)
     
-    if skip_binary:
-        # 跳过二进制文件处理，只更新data.json
-        logger.info("=== 跳过二进制文件处理，只更新data.json ===")
-        added_count = 0
-        for idx, (url, source, title, article_date) in enumerate(urls_info):
-            if not title:
-                # 如果没有标题，使用URL作为标题
-                title = f"微信文章_{idx+1}"
-            
-            # 再次检查URL是否已在data.json中存在
-            if url in data:
-                logger.debug(f"跳过已存在于data.json的URL: {url}")
-                continue
-                
-            # 直接更新data.json，不调用二进制文件
-            data[url] = title
-            added_count += 1
-            logger.debug(f"更新data.json: {url} -> {title}")
+    logger.info("=== 跳过二进制文件处理，只更新data.json ===")
+    added_count = 0
+    for idx, (url, source, title, article_date) in enumerate(urls_info):
+        if not title:
+            title = f"微信文章_{idx+1}"
         
-        # 保存data.json
-        write_json(data_file, data)
-        logger.info(f"已更新data.json，添加了 {added_count} 个URL")
-    else:
-        # 4. 再批量抓取和归档
-        for idx, (url, source, title, article_date) in enumerate(urls_info):
-            real_title = save_md_and_update_data(url, article_date, base_result_path, data, data_file, executable_path, source, article_date)
-            if not title:
-                urls_info[idx] = (url, source, real_title, article_date)
+        if url in data:
+            logger.debug(f"跳过已存在于data.json的URL: {url}")
+            continue
+        
+        data[url] = title
+        added_count += 1
+        logger.debug(f"更新data.json: {url} -> {title}")
     
-    # 5. 最后再补全md报告（带真实标题）
-    if urls_info:
-        create_daily_md_report(date_str, urls_info)
+    write_json(data_file, data)
+    logger.info(f"已更新data.json，添加了 {added_count} 个URL")
 
-
-
-    
-def rep_filename(result_path):
-    ''' 
-    替换不能用于文件名的字符
-    '''
-    for root, _, files in os.walk(result_path):
-        for file in files:
-            if file.endswith(".md"):
-                file_path = os.path.join(root, file)
-                new_file = re.sub(r'[\/\\\:\*\?\"\<\>\|]', '', file)
-                shutil.move(os.path.join(root, file), os.path.join(root, new_file))
-                
-
-def extract_title_from_md(md_path):
-    # 尝试从md文件首行获取标题，否则用文件名
-    try:
-        with open(md_path, 'r', encoding='utf-8') as f:
-            first_line = f.readline().strip()
-            if first_line.startswith('#'):
-                return first_line.lstrip('#').strip()
-    except:
-        pass
-    return os.path.splitext(os.path.basename(md_path))[0]
 
 def analyze_security_threats(urls_info):
     """
@@ -437,11 +354,14 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     创建每日md报告文档
     urls_info: [(url, source, title, date), ...]
     """
-    os.makedirs(md_dir, exist_ok=True)
+    dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+    year = dt.strftime('%Y')
+    month = dt.strftime('%Y-%m')
+    month_dir = os.path.join(md_dir, year, month)
+    os.makedirs(month_dir, exist_ok=True)
     
-    # 文件名格式：2025-07-25.md
     filename = f"{date_str}.md"
-    filepath = os.path.join(md_dir, filename)
+    filepath = os.path.join(month_dir, filename)
     
     # 统计信息
     total_urls = len(urls_info)
@@ -567,7 +487,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     md_content += f"""
 ## 📁 归档路径
 
-文章已归档到: `doc/{date_str[:4]}/{date_str[:7]}/{date_str[:4]}-W{datetime.datetime.strptime(date_str, '%Y-%m-%d').isocalendar()[1]:02d}/{date_str}/`
+文章已归档到: `md/{date_str[:4]}/{date_str[:7]}/{date_str}.md`
 
 ## 🔗 数据源说明
 
@@ -608,49 +528,6 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     logger.info(f"已创建每日报告: {filepath}")
     return filepath
 
-def save_md_and_update_data(url, date_str, base_result_path, data, data_file, executable_path, source="未知", article_date=None):
-    logger.info(f"开始处理URL: {url}")
-    logger.info(f"目标日期: {date_str}")
-    logger.info(f"数据源: {source}")
-    
-    dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
-    year = dt.year
-    month = dt.strftime('%Y-%m')
-    week = f"{year}-W{dt.isocalendar()[1]:02d}"
-    day = dt.strftime('%Y-%m-%d')
-    result_path = os.path.join(base_result_path, str(year), month, week, day)
-    
-    logger.info(f"生成目录结构: {result_path}")
-    os.makedirs(result_path, exist_ok=True)
-    
-    title = "未知标题"
-    for file_path in get_md_path(executable_path, url):
-        filename = os.path.basename(file_path)
-        logger.info(f"处理文件: {filename}")
-        
-        if filename == '.md':
-            logger.warning(f"跳过空文件: {filename}")
-            continue
-            
-        shutil.copy2(file_path, result_path)
-        logger.info(f"文件已复制到: {result_path}")
-        
-        # 获取标题
-        title = extract_title_from_md(file_path)
-        logger.info(f"提取标题: {title}")
-        
-        # 保存标题到data.json
-        data[url] = title
-        write_json(data_file, data)
-        logger.info(f"已更新data.json: {url} -> {title}")
-        
-        print(title, end='、')
-    
-    rep_filename(result_path)
-    logger.info(f"完成处理URL: {url}")
-    
-    return title
-
 def get_chainreactors_md_url(date_str):
     """
     获取指定日期的ChainReactors每日md文件URL
@@ -671,19 +548,13 @@ def main():
     parser.add_argument('--history', action='store_true', help='拉取历史记录')
     parser.add_argument('--date', type=str, help='指定日期，格式YYYY-MM-DD')
     parser.add_argument('--range', nargs=2, metavar=('START', 'END'), help='指定日期区间，格式YYYY-MM-DD YYYY-MM-DD')
-    parser.add_argument('--skip-binary', action='store_true', help='跳过二进制文件处理流程，只更新data.json')
     args = parser.parse_args()
 
     data_file = 'data.json'
     data = {}
-    executable_path = get_executable_path()
-    base_result_path = 'doc'
 
     logger.info(f"数据文件: {data_file}")
-    logger.info(f"可执行文件: {executable_path}")
-    logger.info(f"文档目录: {base_result_path}")
 
-    # 读取历史记录
     data = read_json(data_file, default_data=data)
     logger.info(f"已加载 {len(data)} 条历史记录")
 
@@ -709,7 +580,7 @@ def main():
                 urls = [url.rstrip(')') for url in urls]
                 chainreactors_urls = urls
             try:
-                process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path, executable_path, args.skip_binary)
+                process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
             except Exception as e:
                 logger.error(f"处理日期 {date_str} 时发生错误: {e}")
                 logger.error("跳过当前日期的处理")
@@ -753,7 +624,7 @@ def main():
         else:
             logger.warning("BruceFeIix md文件URL为空")
         try:
-            process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path, executable_path, args.skip_binary)
+            process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
         except Exception as e:
             logger.error(f"处理日期 {date_str} 时发生错误: {e}")
             logger.error("跳过当前日期的处理")
@@ -814,7 +685,7 @@ def main():
             
             # 处理当前日期的数据
             try:
-                process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path, executable_path, args.skip_binary)
+                process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
                 logger.info(f"=== 完成第 {processed_days}/{total_days} 天处理 ===")
             except Exception as e:
                 logger.error(f"=== 第 {processed_days}/{total_days} 天处理失败: {e} ===")
@@ -861,7 +732,7 @@ def main():
         else:
             logger.warning("BruceFeIix md文件URL为空")
         try:
-            process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path, executable_path, args.skip_binary)
+            process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
         except Exception as e:
             logger.error(f"处理日期 {date_str} 时发生错误: {e}")
             logger.error("跳过当前日期的处理")

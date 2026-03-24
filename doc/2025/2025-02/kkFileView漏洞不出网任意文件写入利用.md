@@ -1,4 +1,0 @@
-#  kkFileView漏洞不出网任意文件写入利用   
-原创 不会排版  多才多艺的老王   2025-02-06 02:30  
-  
-利用版本4.2.0 <= kkFileView <= 4.4.0-beta使用两种方式注入注入内存马1、覆盖uno.py注入内存马路径可能需要更改"/opt/libreoffice6.0","/opt/libreoffice6.1","/opt/libreoffice6.2","/opt/libreoffice6.3","/opt/libreoffice6.4","/opt/libreoffice7.0","/opt/libreoffice7.1","/opt/libreoffice7.2","/opt/libreoffice7.3","/opt/libreoffice7.4","/opt/libreoffice7.5","/opt/libreoffice7.6","/usr/lib64/libreoffice","/usr/lib/libreoffice","/usr/local/lib64/libreoffice","/usr/local/lib/libreoffice","/opt/libreoffice","/usr/lib64/openoffice","/usr/lib64/openoffice.org3","/usr/lib64/openoffice.org","/usr/lib/openoffice","/usr/lib/openoffice.org3","/usr/lib/openoffice.org","/opt/openoffice4","/opt/openoffice.org3"利用脚本:
