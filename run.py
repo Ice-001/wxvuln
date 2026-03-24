@@ -649,9 +649,12 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
                 md_content += f"| {idx} | {source} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} |\n"
             md_content += "\n"
 
+    beijing_tz = datetime.timezone(datetime.timedelta(hours=8))
+    beijing_time = datetime.datetime.now(beijing_tz)
+
     md_content += f"""---
 
-*生成时间: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}*
+*生成时间: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')} (北京时间)*
 """
 
     with open(filepath, 'w', encoding='utf-8') as f:
