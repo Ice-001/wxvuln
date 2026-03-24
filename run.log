@@ -49092,3 +49092,21 @@
 2026-03-24 09:50:28,705 - ERROR - 处理日期 2026-03-24 时发生错误: process_one_day() missing 1 required positional argument: 'base_result_path'
 2026-03-24 09:50:28,705 - ERROR - 跳过当前日期的处理
 2026-03-24 09:50:28,705 - INFO - === 执行完成 ===
+2026-03-24 13:03:31,722 - INFO - === 开始执行微信文章归档工具 ===
+2026-03-24 13:03:31,723 - INFO - 数据文件: data.json
+2026-03-24 13:03:31,791 - INFO - 已加载 40794 条历史记录
+2026-03-24 13:03:31,791 - INFO - === 开始今日拉取 ===
+2026-03-24 13:03:31,791 - INFO - 开始获取Doonsec RSS
+2026-03-24 13:03:31,791 - INFO - 目标日期: 2026-03-24
+2026-03-24 13:03:33,745 - INFO - Doonsec RSS请求成功
+2026-03-24 13:03:33,746 - INFO - RSS中共有 200 个条目
+2026-03-24 13:03:33,746 - INFO - Doonsec获取到 200 个2026-03-24的微信文章URL
+2026-03-24 13:03:33,747 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-24.md
+2026-03-24 13:03:33,782 - INFO - ChainReactors md文件下载状态码: 404
+2026-03-24 13:03:33,782 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-24.md 状态码: 404
+2026-03-24 13:03:33,782 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-03-24.md
+2026-03-24 13:03:33,814 - INFO - BruceFeIix md文件下载状态码: 200
+2026-03-24 13:03:33,815 - INFO - BruceFeIix获取到 58 个URL
+2026-03-24 13:03:33,815 - ERROR - 处理日期 2026-03-24 时发生错误: process_one_day() missing 1 required positional argument: 'base_result_path'
+2026-03-24 13:03:33,815 - ERROR - 跳过当前日期的处理
+2026-03-24 13:03:33,815 - INFO - === 执行完成 ===
