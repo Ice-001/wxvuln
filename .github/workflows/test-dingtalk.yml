@@ -1,0 +1,78 @@
+name: test-dingtalk
+
+on:
+  workflow_dispatch:
+    inputs:
+      test_date:
+        description: '测试日期 (YYYY-MM-DD)'
+        required: false
+        default: ''
+
+jobs:
+  test-notify:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v4
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: |
+        pip install requests
+    - name: Send test notification
+      env:
+        DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+      run: |
+        test_date="${{ github.event.inputs.test_date }}"
+        if [ -z "$test_date" ]; then
+          test_date=$(date +%Y-%m-%d)
+        fi
+        echo "Testing notification for date: $test_date"
+        python -c "
+import os
+import sys
+sys.path.insert(0, '.')
+from run import send_dingtalk_notification
+
+webhook_url = os.environ.get('DINGTALK_WEBHOOK_URL')
+if not webhook_url:
+    print('DINGTALK_WEBHOOK_URL not set')
+    sys.exit(1)
+
+title = '🧪 钉钉通知测试'
+content = '''### 🤖 钉钉通知测试成功！
+
+这是一条来自 GitHub Actions 的测试消息。
+
+📅 测试日期: ''' + '''$test_date''' + '''
+
+⏰ 测试时间: ''' + '''$(date +%Y-%m-%d\ %H:%M:%S)''' + '''
+
+如果看到这条消息，说明钉钉机器人配置正确！
+'''
+
+result = send_dingtalk_notification(title, content, webhook_url)
+if result:
+    print('✅ Test notification sent successfully!')
+else:
+    print('❌ Test notification failed!')
+    sys.exit(1)
+"
+    - name: Send daily report notification
+      if: github.event.inputs.test_date != ''
+      env:
+        DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+      run: |
+        python -c "
+import os
+import sys
+sys.path.insert(0, '.')
+from run import notify_daily_report
+
+test_date = '''${{ github.event.inputs.test_date }}'''
+if test_date:
+    notify_daily_report(test_date)
+    print(f'Notification for {test_date} sent!')
+"

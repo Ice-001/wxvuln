@@ -8,84 +8,6 @@ import requests
 import datetime
 import argparse
 import logging
-import urllib.request
-import urllib.parse
-
-DINGTALK_WEBHOOK_URL = os.getenv('DINGTALK_WEBHOOK_URL')
-DINGTALK_SECRET = os.getenv('DINGTALK_SECRET')
-
-def get_dingtalk_sign(secret):
-    import time
-    import hmac
-    import hashlib
-    import base64
-    timestamp = str(round(time.time() * 1000))
-    secret_enc = secret.encode('utf-8')
-    string_to_sign = f'{timestamp}\n{secret}'
-    string_to_sign_enc = string_to_sign.encode('utf-8')
-    hmac_code = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
-    sign = base64.b64encode(hmac_code).decode('utf-8')
-    return timestamp, sign
-
-def send_dingtalk_message(message, webhook_url=None, secret=None):
-    if not webhook_url:
-        webhook_url = DINGTALK_WEBHOOK_URL
-    if not webhook_url:
-        logger.warning("钉钉 webhook URL 未设置，跳过消息发送")
-        return False
-    
-    url = webhook_url
-    if secret:
-        timestamp, sign = get_dingtalk_sign(secret)
-        url = f"{webhook_url}&timestamp={timestamp}&sign={urllib.parse.quote(sign)}"
-    
-    data = {
-        "msgtype": "markdown",
-        "markdown": {
-            "title": "安全资讯日报",
-            "text": message
-        }
-    }
-    
-    try:
-        req = urllib.request.Request(url, data=json.dumps(data).encode('utf-8'), headers={'Content-Type': 'application/json'})
-        with urllib.request.urlopen(req, timeout=10) as response:
-            result = json.loads(response.read().decode('utf-8'))
-            if result.get('errcode') == 0:
-                logger.info("钉钉消息发送成功")
-                return True
-            else:
-                logger.error(f"钉钉消息发送失败: {result}")
-                return False
-    except Exception as e:
-        logger.error(f"钉钉消息发送异常: {e}")
-        return False
-
-def send_daily_report_notification(date_str, report_path, article_count):
-    yesterday = (datetime.datetime.strptime(date_str, '%Y-%m-%d') - datetime.timedelta(days=1)).strftime('%Y-%m-%d')
-    message = f"""### 安全资讯日报 - {date_str}
-
-**文章数量**: {article_count} 篇
-
-**归档路径**: `md/{date_str[:4]}/{date_str[5:7]}/{date_str}.md`
-
----
-### 昨日要点 - {yesterday}
-
-昨日安全资讯已生成，请查阅归档文档
-"""
-    return send_dingtalk_message(message)
-
-def send_test_message():
-    message = """### 🔔 钉钉机器人测试消息
-
-这是一条测试消息，用于验证钉钉机器人配置是否正确。
-
-**发送时间**: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-如果收到此消息，说明机器人配置正常！
-"""
-    return send_dingtalk_message(message)
 
 # 配置日志
 logging.basicConfig(
@@ -119,6 +41,83 @@ def read_json(path, default_data={}, encoding="utf8"):
         data = default_data
         write_json(path, data, encoding=encoding)
     return data
+
+
+def send_dingtalk_notification(title, content, webhook_url):
+    """
+    发送钉钉群通知
+    """
+    if not webhook_url:
+        logger.warning("钉钉 Webhook URL 未设置，跳过通知")
+        return False
+    
+    data = {
+        "msgtype": "markdown",
+        "markdown": {
+            "title": title,
+            "text": content
+        }
+    }
+    
+    try:
+        response = requests.post(webhook_url, json=data, headers={"Content-Type": "application/json"})
+        result = response.json()
+        if result.get("errcode") == 0:
+            logger.info(f"钉钉通知发送成功: {title}")
+            return True
+        else:
+            logger.error(f"钉钉通知发送失败: {result.get('errmsg')}")
+            return False
+    except Exception as e:
+        logger.error(f"钉钉通知发送异常: {e}")
+        return False
+
+
+def notify_daily_report(date_str, md_dir="md"):
+    """
+    发送每日报告的钉钉通知
+    """
+    webhook_url = os.environ.get("DINGTALK_WEBHOOK_URL")
+    if not webhook_url:
+        logger.warning("未设置 DINGTALK_WEBHOOK_URL 环境变量")
+        return
+    
+    dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
+    year = dt.strftime('%Y')
+    month = dt.strftime('%Y-%m')
+    filepath = os.path.join(md_dir, year, month, f"{date_str}.md")
+    
+    if not os.path.exists(filepath):
+        logger.warning(f"报告文件不存在: {filepath}")
+        return
+    
+    with open(filepath, 'r', encoding='utf-8') as f:
+        md_content = f.read()
+    
+    title = f"📢 {date_str} 安全威胁态势报告"
+    
+    lines = md_content.split('\n')
+    summary = []
+    in_data_section = False
+    line_count = 0
+    
+    for line in lines:
+        if line.startswith('## 📊 数据概览'):
+            in_data_section = True
+            summary.append(line)
+            continue
+        if in_data_section:
+            if line.startswith('##'):
+                break
+            summary.append(line)
+            line_count += 1
+            if line_count > 15:
+                break
+    
+    content = "### " + "\n### ".join(summary[:12])
+    content += f"\n\n📅 报告日期: {date_str}\n📂 归档路径: `md/{year}/{month}/{date_str}.md`"
+    
+    send_dingtalk_notification(title, content, webhook_url)
 
 def get_doonsec_url(target_date=None):
     '''从 Doonsec RSS 获取指定日期的URL、日期和标题，返回(url, date, title)元组列表'''
@@ -238,8 +237,9 @@ def filter_by_keywords(urls_info):
         
         # ===== 红队蓝队与攻防演练 =====
         '红队', '蓝队', '紫队', '攻防演练', '渗透测试', '安全评估',
-        '漏洞扫描', '安全测试', '安全审计', '风险评估',
-        'CTF', 'AWD', 'CFT', '解题', '攻防', '夺旗', 'BugKu', 'XCTF', 'i春秋', 'Pentest',
+        '漏洞扫描', '安全测试', '安全审计', '安全评估', '风险评估',
+        'CTF', 'AWD', 'BugKu', 'CTF比赛', '逆向', '二进制', 'PWN', 'Crypto',
+        'Misc', 'Web安全', 'Reverse', 'Reveerse', 'pwn', 'reversing'
         
         # ===== 特定攻击技术与恶意软件 =====
         '社会工程学', '钓鱼攻击', '水坑攻击', '供应链攻击', '零日攻击',
@@ -504,7 +504,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 `安全运营|安全运维|安全管理|安全治理|安全合规|安全审计|安全监控|安全分析|安全评估|安全测试|安全培训|安全意识|安全架构|安全设计|安全开发|安全部署|安全配置|安全策略|安全控制|安全防护|安全检测|安全响应|安全恢复|安全备份|安全日志|安全事件|安全告警|安全报告|安全指标|安全度量|安全工具|安全平台|安全系统|安全服务|安全咨询|安全外包|安全团队|安全专家|安全工程师|安全分析师|安全管理员|漏洞运营|SRC|安全运营框架|安全治理框架`
 
 #### ⚔️ 红队蓝队与攻防演练
-`红队|蓝队|紫队|攻防演练|渗透测试|安全评估|漏洞扫描|安全测试|安全审计|风险评估|CTF|AWD|CFT|解题|攻防|夺旗|BugKu|XCTF|i春秋|Pentest`
+`红队|蓝队|紫队|攻防演练|渗透测试|安全评估|漏洞扫描|安全测试|安全审计|安全评估|风险评估`
 
 #### 🦠 特定攻击技术与恶意软件
 `社会工程学|钓鱼攻击|水坑攻击|供应链攻击|零日攻击|侧信道攻击|中间人攻击|拒绝服务|分布式拒绝服务|DDoS|勒索软件|木马|后门|病毒|蠕虫|僵尸网络|银狐`
