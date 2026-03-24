@@ -566,7 +566,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     md_content += f"""
 ## 📁 归档路径
 
-文章已归档到: `md/{date_str[:4]}/{date_str[:7]}/{date_str}.md`
+文章已归档到: `md/{date_str[:4]}/{int(date_str[5:7]):02d}/{date_str}.md`
 
 ## 🔗 数据源说明
 
