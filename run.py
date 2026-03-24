@@ -98,11 +98,14 @@ def send_dingtalk_notification(title, content):
     """
     发送钉钉群通知（加签模式）
     """
+    logger.info("开始 send_dingtalk_notification")
     robot_url = get_dingtalk_robot_url()
+    logger.info(f"robot_url 生成结果: {bool(robot_url)}")
     if not robot_url:
         logger.warning("钉钉机器人配置不完整，跳过通知")
         return False
-    
+
+    logger.info(f"准备发送请求...")
     data = {
         "msgtype": "markdown",
         "markdown": {
@@ -110,10 +113,14 @@ def send_dingtalk_notification(title, content):
             "text": content
         }
     }
-    
+
     try:
+        logger.info(f"发送POST请求到钉钉...")
         response = requests.post(robot_url, json=data, headers={"Content-Type": "application/json"})
+        logger.info(f"响应状态码: {response.status_code}")
         result = response.json()
+        logger.info(f"响应内容: {result}")
+
         if result.get("errcode") == 0:
             logger.info(f"钉钉通知发送成功: {title}")
             return True
@@ -129,8 +136,12 @@ def send_task_summary_notification(date_str, total_urls, added_count, skipped_co
     """
     发送任务统计信息（当无新增文章时）
     """
+    logger.info("开始 send_task_summary_notification")
     appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
     appsecret = os.environ.get("DINGDING_SECRET")
+    logger.info(f"DINGDING_ACCESS_TOKEN 存在: {bool(appkey)}")
+    logger.info(f"DINGDING_SECRET 存在: {bool(appsecret)}")
+
     if not appkey or not appsecret:
         logger.warning("钉钉访问密钥未设置，跳过通知")
         return
@@ -156,8 +167,12 @@ def notify_daily_report(date_str, md_dir="md"):
     """
     发送每日报告的钉钉通知
     """
+    logger.info("开始 notify_daily_report")
     appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
     appsecret = os.environ.get("DINGDING_SECRET")
+    logger.info(f"DINGDING_ACCESS_TOKEN 存在: {bool(appkey)}")
+    logger.info(f"DINGDING_SECRET 存在: {bool(appsecret)}")
+
     if not appkey or not appsecret:
         logger.warning("钉钉访问密钥未设置，跳过通知")
         return
@@ -895,11 +910,16 @@ def main():
         try:
             added_count, total_urls = process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
             skipped_count = len(doonsec_list) + len(chainreactors_urls) + len(brucefeiix_urls) - total_urls
+            logger.info(f"处理结果: 新增 {added_count} 个, 总匹配 {total_urls} 个, 跳过 {skipped_count} 个")
 
+            logger.info(f"准备发送钉钉通知...")
             if added_count > 0:
+                logger.info(f"有新文章，开始发送每日报告...")
                 notify_daily_report(date_str)
             else:
+                logger.info(f"无新文章，开始发送任务统计...")
                 send_task_summary_notification(date_str, total_urls, added_count, skipped_count)
+            logger.info(f"钉钉通知发送完成")
         except Exception as e:
             logger.error(f"处理日期 {date_str} 时发生错误: {e}")
             logger.error("跳过当前日期的处理")
