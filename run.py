@@ -201,11 +201,20 @@ def notify_daily_report(date_str, md_dir="md"):
     dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
     year = dt.strftime('%Y')
     month = dt.strftime('%Y-%m')
-    filepath = os.path.join(md_dir, year, month, f"{date_str}.md")
+    month_dir = os.path.join(md_dir, year, month)
 
-    if not os.path.exists(filepath):
-        logger.warning(f"报告文件不存在: {filepath}")
+    if not os.path.exists(month_dir):
+        logger.warning(f"报告目录不存在: {month_dir}")
         return
+
+    md_files = [f for f in os.listdir(month_dir) if f.startswith(date_str) and f.endswith('.md')]
+    if not md_files:
+        logger.warning(f"报告文件不存在: {date_str}")
+        return
+    
+    md_files.sort()
+    filepath = os.path.join(month_dir, md_files[-1])
+    logger.info(f"使用最新报告文件: {filepath}")
 
     with open(filepath, 'r', encoding='utf-8') as f:
         md_content = f.read()
@@ -582,8 +591,15 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     month_dir = os.path.join(md_dir, year, month)
     os.makedirs(month_dir, exist_ok=True)
 
-    filename = f"{date_str}.md"
+    base_filename = f"{date_str}"
+    filename = f"{base_filename}.md"
     filepath = os.path.join(month_dir, filename)
+
+    seq = 1
+    while os.path.exists(filepath):
+        filename = f"{base_filename}_{seq}.md"
+        filepath = os.path.join(month_dir, filename)
+        seq += 1
 
     total_urls = len(urls_info)
     sources = {}
