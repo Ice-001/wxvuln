@@ -525,6 +525,20 @@ def analyze_vulnerability_types(urls_info):
     
     return vuln_stats
 
+def escape_markdown(text):
+    """转义Markdown特殊字符"""
+    if not text:
+        return ""
+    replacements = {
+        '[': '【',
+        ']': '】',
+        '(': '（',
+        ')': '）',
+    }
+    for old, new in replacements.items():
+        text = text.replace(old, new)
+    return text
+
 def create_daily_md_report(date_str, urls_info, md_dir="md"):
     """
     创建每日md报告文档
@@ -555,21 +569,21 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 """
 
     for source, count in sources.items():
-        md_content += f"- {source}: {count}篇\n"
+        md_content += f"- {escape_markdown(source)}: {count}篇\n"
 
     md_content += "\n## 威胁类型分布\n\n"
 
     sorted_threats = sorted(threat_stats.items(), key=lambda x: x[1], reverse=True)
     for threat_type, count in sorted_threats:
         if count > 0:
-            md_content += f"- {threat_type}: {count}篇\n"
+            md_content += f"- {escape_markdown(threat_type)}: {count}篇\n"
 
     md_content += "\n## 漏洞类型分布\n\n"
 
     sorted_vulns = sorted(vuln_stats.items(), key=lambda x: x[1], reverse=True)
     for vuln_type, count in sorted_vulns:
         if count > 0:
-            md_content += f"- {vuln_type}: {count}篇\n"
+            md_content += f"- {escape_markdown(vuln_type)}: {count}篇\n"
 
     md_content += "\n## 🎯 威胁详情分析\n\n"
 
@@ -578,7 +592,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
             md_content += f"### {threat_type}\n\n"
             md_content += "| 序号 | 来源 | 文章标题 |\n|------|------|----------|\n"
             for idx, (title, source, url) in enumerate(articles, 1):
-                md_content += f"| {idx} | {source} | [{title}]({url}) |\n"
+                md_content += f"| {idx} | {source} | [{escape_markdown(title)}]({url}) |\n"
             md_content += "\n"
 
     md_content += f"""---
