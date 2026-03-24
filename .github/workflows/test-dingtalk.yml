@@ -26,16 +26,11 @@ jobs:
         DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
         DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
       run: |
-        test_date="${{ github.event.inputs.test_date }}"
-        if [ -z "$test_date" ]; then
-          test_date=$(date +%Y-%m-%d)
-        fi
-        echo "Testing notification for date: $test_date"
         python -c "
 import os
 import sys
 sys.path.insert(0, '.')
-from run import send_dingtalk_notification, get_dingtalk_robot_url
+from run import send_dingtalk_notification
 
 appkey = os.environ.get('DINGDING_ACCESS_TOKEN')
 appsecret = os.environ.get('DINGDING_SECRET')
@@ -48,9 +43,7 @@ content = '''### 🤖 钉钉通知测试成功！
 
 这是一条来自 GitHub Actions 的测试消息。
 
-📅 测试日期: ''' + '''$test_date''' + '''
-
-⏰ 测试时间: ''' + '''$(date +%Y-%m-%d\ %H:%M:%S)''' + '''
+⏰ 测试时间: ''' + '$(date +%Y-%m-%d\ %H:%M:%S)' + '''
 
 如果看到这条消息，说明钉钉机器人配置正确！
 '''
