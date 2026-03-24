@@ -49128,3 +49128,45 @@
 2026-03-24 14:24:15,518 - ERROR - 处理日期 2026-03-24 时发生错误: process_one_day() missing 1 required positional argument: 'base_result_path'
 2026-03-24 14:24:15,518 - ERROR - 跳过当前日期的处理
 2026-03-24 14:24:15,518 - INFO - === 执行完成 ===
+2026-03-24 14:28:13,229 - INFO - === 开始执行微信文章归档工具 ===
+2026-03-24 14:28:13,230 - INFO - 数据文件: data.json
+2026-03-24 14:28:13,292 - INFO - 已加载 40794 条历史记录
+2026-03-24 14:28:13,292 - INFO - === 开始今日拉取 ===
+2026-03-24 14:28:13,292 - INFO - 开始获取Doonsec RSS
+2026-03-24 14:28:13,292 - INFO - 目标日期: 2026-03-24
+2026-03-24 14:28:15,148 - INFO - Doonsec RSS请求成功
+2026-03-24 14:28:15,150 - INFO - RSS中共有 200 个条目
+2026-03-24 14:28:15,150 - INFO - Doonsec获取到 200 个2026-03-24的微信文章URL
+2026-03-24 14:28:15,151 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-24.md
+2026-03-24 14:28:15,284 - INFO - ChainReactors md文件下载状态码: 404
+2026-03-24 14:28:15,284 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-24.md 状态码: 404
+2026-03-24 14:28:15,284 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-03-24.md
+2026-03-24 14:28:15,362 - INFO - BruceFeIix md文件下载状态码: 200
+2026-03-24 14:28:15,363 - INFO - BruceFeIix获取到 58 个URL
+2026-03-24 14:28:15,363 - INFO - === 开始处理 2026-03-24 的数据 ===
+2026-03-24 14:28:15,363 - INFO - Doonsec原始数据: 200 个
+2026-03-24 14:28:15,363 - INFO - ChainReactors原始数据: 0 个
+2026-03-24 14:28:15,364 - INFO - BruceFeIix原始数据: 58 个
+2026-03-24 14:28:15,364 - INFO - 去重后共 231 个URL待处理，跳过 27 个重复URL
+2026-03-24 14:28:15,364 - INFO - 去重后统计 - Doonsec: 187 个, ChainReactors: 0 个, BruceFeIix: 44 个
+2026-03-24 14:28:15,364 - INFO - === 开始关键词过滤 ===
+2026-03-24 14:28:15,371 - INFO - 关键词过滤: 匹配 54 个，跳过 177 个
+2026-03-24 14:28:15,371 - INFO - 关键词过滤后统计 - Doonsec: 51 个, ChainReactors: 0 个, BruceFeIix: 3 个
+2026-03-24 14:28:15,381 - INFO - 已创建每日报告: md/2026/2026-03/2026-03-24.md
+2026-03-24 14:28:15,381 - INFO - === 更新data.json ===
+2026-03-24 14:28:15,444 - INFO - 已更新data.json，添加了 54 个URL
+2026-03-24 14:28:15,444 - INFO - 处理结果: 新增 54 个, 总匹配 54 个, 跳过 204 个
+2026-03-24 14:28:15,444 - INFO - 准备发送钉钉通知...
+2026-03-24 14:28:15,444 - INFO - 有新文章，开始发送每日报告...
+2026-03-24 14:28:15,444 - INFO - 开始 notify_daily_report
+2026-03-24 14:28:15,445 - INFO - DINGDING_ACCESS_TOKEN 存在: True
+2026-03-24 14:28:15,445 - INFO - DINGDING_SECRET 存在: True
+2026-03-24 14:28:15,445 - INFO - 开始 send_dingtalk_notification
+2026-03-24 14:28:15,445 - INFO - robot_url 生成结果: True
+2026-03-24 14:28:15,445 - INFO - 准备发送请求...
+2026-03-24 14:28:15,445 - INFO - 发送POST请求到钉钉...
+2026-03-24 14:28:16,623 - INFO - 响应状态码: 200
+2026-03-24 14:28:16,623 - INFO - 响应内容: {'errcode': 0, 'errmsg': 'ok'}
+2026-03-24 14:28:16,623 - INFO - 钉钉通知发送成功: 📢 2026-03-24 安全威胁态势报告
+2026-03-24 14:28:16,624 - INFO - 钉钉通知发送完成
+2026-03-24 14:28:16,625 - INFO - === 执行完成 ===
