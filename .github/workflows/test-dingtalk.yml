@@ -23,7 +23,8 @@ jobs:
         pip install requests
     - name: Send test notification
       env:
-        DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+        DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
+        DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
       run: |
         test_date="${{ github.event.inputs.test_date }}"
         if [ -z "$test_date" ]; then
@@ -34,11 +35,12 @@ jobs:
 import os
 import sys
 sys.path.insert(0, '.')
-from run import send_dingtalk_notification
+from run import send_dingtalk_notification, get_dingtalk_robot_url
 
-webhook_url = os.environ.get('DINGTALK_WEBHOOK_URL')
-if not webhook_url:
-    print('DINGTALK_WEBHOOK_URL not set')
+appkey = os.environ.get('DINGDING_ACCESS_TOKEN')
+appsecret = os.environ.get('DINGDING_SECRET')
+if not appkey or not appsecret:
+    print('DINGDING_ACCESS_TOKEN or DINGDING_SECRET not set')
     sys.exit(1)
 
 title = '🧪 钉钉通知测试'
@@ -53,7 +55,7 @@ content = '''### 🤖 钉钉通知测试成功！
 如果看到这条消息，说明钉钉机器人配置正确！
 '''
 
-result = send_dingtalk_notification(title, content, webhook_url)
+result = send_dingtalk_notification(title, content)
 if result:
     print('✅ Test notification sent successfully!')
 else:
@@ -63,7 +65,8 @@ else:
     - name: Send daily report notification
       if: github.event.inputs.test_date != ''
       env:
-        DINGTALK_WEBHOOK_URL: ${{ secrets.DINGTALK_WEBHOOK_URL }}
+        DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
+        DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
       run: |
         python -c "
 import os

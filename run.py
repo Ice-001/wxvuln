@@ -3,8 +3,13 @@ import os
 import re
 import sys
 import json
+import time
+import base64
+import hmac
+import hashlib
 import xml.etree.ElementTree as ET
 import requests
+import requests.utils
 import datetime
 import argparse
 import logging
@@ -43,12 +48,59 @@ def read_json(path, default_data={}, encoding="utf8"):
     return data
 
 
-def send_dingtalk_notification(title, content, webhook_url):
+def get_dingtalk_token():
     """
-    发送钉钉群通知
+    获取钉钉访问令牌
     """
-    if not webhook_url:
-        logger.warning("钉钉 Webhook URL 未设置，跳过通知")
+    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
+    appsecret = os.environ.get("DINGDING_SECRET")
+    
+    if not appkey or not appsecret:
+        logger.warning("钉钉访问密钥未设置，跳过通知")
+        return None, None
+    
+    try:
+        url = f"https://oapi.dingtalk.com/gettoken?appkey={appkey}&appsecret={appsecret}"
+        response = requests.get(url)
+        result = response.json()
+        if result.get("errcode") == 0:
+            return result.get("access_token"), appkey
+        else:
+            logger.error(f"获取钉钉token失败: {result.get('errmsg')}")
+            return None, None
+    except Exception as e:
+        logger.error(f"获取钉钉token异常: {e}")
+        return None, None
+
+
+def get_dingtalk_robot_url():
+    """
+    获取钉钉机器人Webhook地址
+    """
+    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
+    secret = os.environ.get("DINGDING_SECRET")
+
+    if not appkey or not secret:
+        return None
+
+    timestamp = str(round(time.time() * 1000))
+    secret_enc = secret.encode('utf-8')
+    string_to_sign = '{}\n{}'.format(timestamp, secret)
+    string_to_sign_enc = string_to_sign.encode('utf-8')
+    sign = hmac.new(secret_enc, string_to_sign_enc, digestmod=hashlib.sha256).digest()
+    sign = base64.b64encode(sign).decode('utf-8')
+
+    robot_url = f"https://oapi.dingtalk.com/robot/send?access_token={appkey}&timestamp={timestamp}&sign={requests.utils.quote(sign)}"
+    return robot_url
+
+
+def send_dingtalk_notification(title, content):
+    """
+    发送钉钉群通知（加签模式）
+    """
+    robot_url = get_dingtalk_robot_url()
+    if not robot_url:
+        logger.warning("钉钉机器人配置不完整，跳过通知")
         return False
     
     data = {
@@ -60,7 +112,7 @@ def send_dingtalk_notification(title, content, webhook_url):
     }
     
     try:
-        response = requests.post(webhook_url, json=data, headers={"Content-Type": "application/json"})
+        response = requests.post(robot_url, json=data, headers={"Content-Type": "application/json"})
         result = response.json()
         if result.get("errcode") == 0:
             logger.info(f"钉钉通知发送成功: {title}")
@@ -73,34 +125,62 @@ def send_dingtalk_notification(title, content, webhook_url):
         return False
 
 
+def send_task_summary_notification(date_str, total_urls, added_count, skipped_count):
+    """
+    发送任务统计信息（当无新增文章时）
+    """
+    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
+    appsecret = os.environ.get("DINGDING_SECRET")
+    if not appkey or not appsecret:
+        logger.warning("钉钉访问密钥未设置，跳过通知")
+        return
+
+    title = f"📊 {date_str} 任务执行统计"
+    content = f"""### 📊 {date_str} 任务执行统计
+
+**执行时间**: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
+
+**数据统计**:
+- 匹配文章数: {total_urls}
+- 新增文章数: {added_count}
+- 跳过文章数: {skipped_count}
+
+---
+*微信安全文章归档系统* 🤖
+"""
+
+    send_dingtalk_notification(title, content)
+
+
 def notify_daily_report(date_str, md_dir="md"):
     """
     发送每日报告的钉钉通知
     """
-    webhook_url = os.environ.get("DINGTALK_WEBHOOK_URL")
-    if not webhook_url:
-        logger.warning("未设置 DINGTALK_WEBHOOK_URL 环境变量")
+    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
+    appsecret = os.environ.get("DINGDING_SECRET")
+    if not appkey or not appsecret:
+        logger.warning("钉钉访问密钥未设置，跳过通知")
         return
-    
+
     dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
     year = dt.strftime('%Y')
     month = dt.strftime('%Y-%m')
     filepath = os.path.join(md_dir, year, month, f"{date_str}.md")
-    
+
     if not os.path.exists(filepath):
         logger.warning(f"报告文件不存在: {filepath}")
         return
-    
+
     with open(filepath, 'r', encoding='utf-8') as f:
         md_content = f.read()
-    
+
     title = f"📢 {date_str} 安全威胁态势报告"
-    
+
     lines = md_content.split('\n')
     summary = []
     in_data_section = False
     line_count = 0
-    
+
     for line in lines:
         if line.startswith('## 📊 数据概览'):
             in_data_section = True
@@ -113,11 +193,11 @@ def notify_daily_report(date_str, md_dir="md"):
             line_count += 1
             if line_count > 15:
                 break
-    
+
     content = "### " + "\n### ".join(summary[:12])
     content += f"\n\n📅 报告日期: {date_str}\n📂 归档路径: `md/{year}/{month}/{date_str}.md`"
-    
-    send_dingtalk_notification(title, content, webhook_url)
+
+    send_dingtalk_notification(title, content)
 
 def get_doonsec_url(target_date=None):
     '''从 Doonsec RSS 获取指定日期的URL、日期和标题，返回(url, date, title)元组列表'''
@@ -304,11 +384,11 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     logger.info(f"Doonsec原始数据: {len(doonsec_list)} 个")
     logger.info(f"ChainReactors原始数据: {len(chainreactors_urls)} 个")
     logger.info(f"BruceFeIix原始数据: {len(brucefeiix_urls)} 个")
-    
+
     urls_info = []
     url_set = set()
     skipped_count = 0
-    
+
     for url, ddate, title in doonsec_list:
         use_date = ddate if ddate else date_str
         if url in data or url in url_set:
@@ -318,7 +398,7 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
         urls_info.append((url, "Doonsec", title, use_date))
         url_set.add(url)
         logger.debug(f"添加Doonsec URL: {url}")
-    
+
     for url, title in chainreactors_urls:
         if url in data or url in url_set:
             logger.debug(f"跳过已存在的URL: {url}")
@@ -327,7 +407,7 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
         urls_info.append((url, "ChainReactors", title, date_str))
         url_set.add(url)
         logger.debug(f"添加ChainReactors URL: {url}")
-    
+
     for url, title in brucefeiix_urls:
         if url in data or url in url_set:
             logger.debug(f"跳过已存在的URL: {url}")
@@ -336,41 +416,43 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
         urls_info.append((url, "BruceFeIix", title, date_str))
         url_set.add(url)
         logger.debug(f"添加BruceFeIix URL: {url}")
-    
+
     logger.info(f"去重后共 {len(urls_info)} 个URL待处理，跳过 {skipped_count} 个重复URL")
-    
+
     doonsec_count = len([u for u in urls_info if u[1] == "Doonsec"])
     chainreactors_count = len([u for u in urls_info if u[1] == "ChainReactors"])
     brucefeiix_count = len([u for u in urls_info if u[1] == "BruceFeIix"])
     logger.info(f"去重后统计 - Doonsec: {doonsec_count} 个, ChainReactors: {chainreactors_count} 个, BruceFeIix: {brucefeiix_count} 个")
-    
+
     logger.info("=== 开始关键词过滤 ===")
     urls_info = filter_by_keywords(urls_info)
-    
+
     doonsec_count = len([u for u in urls_info if u[1] == "Doonsec"])
     chainreactors_count = len([u for u in urls_info if u[1] == "ChainReactors"])
     brucefeiix_count = len([u for u in urls_info if u[1] == "BruceFeIix"])
     logger.info(f"关键词过滤后统计 - Doonsec: {doonsec_count} 个, ChainReactors: {chainreactors_count} 个, BruceFeIix: {brucefeiix_count} 个")
-    
+
     if urls_info:
         create_daily_md_report(date_str, urls_info)
-    
-    logger.info("=== 跳过二进制文件处理，只更新data.json ===")
+
+    logger.info("=== 更新data.json ===")
     added_count = 0
     for idx, (url, source, title, article_date) in enumerate(urls_info):
         if not title:
             title = f"微信文章_{idx+1}"
-        
+
         if url in data:
             logger.debug(f"跳过已存在于data.json的URL: {url}")
             continue
-        
+
         data[url] = title
         added_count += 1
         logger.debug(f"更新data.json: {url} -> {title}")
-    
+
     write_json(data_file, data)
     logger.info(f"已更新data.json，添加了 {added_count} 个URL")
+
+    return added_count, len(urls_info)
 
 
 def analyze_security_threats(urls_info):
@@ -811,7 +893,13 @@ def main():
         else:
             logger.warning("BruceFeIix md文件URL为空")
         try:
-            process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
+            added_count, total_urls = process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
+            skipped_count = len(doonsec_list) + len(chainreactors_urls) + len(brucefeiix_urls) - total_urls
+
+            if added_count > 0:
+                notify_daily_report(date_str)
+            else:
+                send_task_summary_notification(date_str, total_urls, added_count, skipped_count)
         except Exception as e:
             logger.error(f"处理日期 {date_str} 时发生错误: {e}")
             logger.error("跳过当前日期的处理")

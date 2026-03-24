@@ -128,9 +128,34 @@ python3 run.py --history
 
 ### 🔔 钉钉机器人配置
 
-1. 在钉钉群中添加自定义机器人
-2. 复制 Webhook URL
-3. 在 GitHub 仓库 Settings > Secrets 中添加 `DINGTALK_WEBHOOK_URL`
+钉钉机器人使用**加签模式**，需要配置 `DINGDING_ACCESS_TOKEN` 和 `DINGDING_SECRET`。
+
+#### 第一步：创建钉钉群机器人
+
+1. 打开钉钉，进入要接收通知的群聊
+2. 点击群设置（右上角齿轮图标）
+3. 选择 **"智能群助手"**
+4. 点击 **"添加机器人"**
+5. 选择 **"自定义"** 机器人
+6. 机器人名称随意填写（如 "安全报告"）
+7. 安全设置选择 **"加签"**，复制生成的 secret
+8. 点击完成，**复制 Webhook URL中的 access_token 部分**
+
+#### 第二步：在 GitHub 仓库添加 Secrets
+
+1. 打开 GitHub 仓库页面
+2. 进入 **Settings** → **Secrets and variables** → **Actions**
+3. 点击 **"New repository secret"**
+4. **Name**: `DINGDING_ACCESS_TOKEN`，**Secret**: 粘贴 Webhook URL 中的 access_token
+5. 再次点击 **"New repository secret"**
+6. **Name**: `DINGDING_SECRET`，**Secret**: 粘贴加签密钥
+7. 点击 **"Add secret"**
+
+#### 第三步：测试通知
+
+1. 在 GitHub 仓库 **Actions** 页面
+2. 选择 **"test-dingtalk"** workflow
+3. 点击 **"Run workflow"** 测试
 
 ### ⏰ 自动执行
 - GitHub Actions 每天 02:00 (UTC) 自动执行（约每天10点北京时间）
