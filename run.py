@@ -394,7 +394,7 @@ def filter_by_keywords(urls_info):
     logger.info(f"关键词过滤: 匹配 {len(filtered_urls)} 个，跳过 {skipped_count} 个")
     return filtered_urls
 
-def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path):
+def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file, base_result_path="md"):
     logger.info(f"=== 开始处理 {date_str} 的数据 ===")
     logger.info(f"Doonsec原始数据: {len(doonsec_list)} 个")
     logger.info(f"ChainReactors原始数据: {len(chainreactors_urls)} 个")
