@@ -499,6 +499,8 @@ def analyze_security_threats(urls_info):
         '安全运营': ['安全运营', '漏洞运营', '情报运营', 'SRC'],
         '信息泄露': ['信息泄漏', '数据泄露', '配置泄露'],
         '供应链': ['供应链', '第三方', '组件'],
+        '安全合规': ['合规', '等保', 'ISO27001', 'GDPR', '数据保护', '隐私合规', '安全审计', '安全评估', '风险评估', '治理', '审计'],
+        '数据安全': ['数据安全', '数据治理', '数据分类', '数据加密', '数据脱敏', '数据备份', '数据恢复', 'DLP', '数据库安全', '数据生命周期'],
         'CTF': list(set(keyword for keywords in ctf_subcategories.values() for keyword in keywords))
     }
 
@@ -582,7 +584,7 @@ def escape_markdown(text):
 
 def create_daily_md_report(date_str, urls_info, md_dir="md"):
     """
-    创建每日md报告文档
+    创建每日md报告文档（追加模式）
     urls_info: [(url, source, title, date), ...]
     """
     dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
@@ -591,16 +593,31 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     month_dir = os.path.join(md_dir, year, month)
     os.makedirs(month_dir, exist_ok=True)
 
-    base_filename = f"{date_str}"
-    filename = f"{base_filename}.md"
+    filename = f"{date_str}.md"
     filepath = os.path.join(month_dir, filename)
 
-    seq = 1
-    while os.path.exists(filepath):
-        filename = f"{base_filename}_{seq}.md"
-        filepath = os.path.join(month_dir, filename)
-        seq += 1
+    existing_urls = set()
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            content = f.read()
+        url_pattern = re.compile(r'https://mp\.weixin\.qq\.com/[^)\s]+')
+        existing_urls = set(url_pattern.findall(content))
+        logger.info(f"发现已有报告，包含 {len(existing_urls)} 个已有URL")
 
+    all_urls = []
+    for item in urls_info:
+        if len(item) >= 3:
+            url = item[2] if len(item) > 2 else item[0]
+            if url not in existing_urls:
+                all_urls.append(item)
+
+    if not all_urls:
+        logger.info("没有新的URL需要添加")
+        return filepath
+
+    logger.info(f"新增 {len(all_urls)} 个URL")
+
+    urls_info = all_urls
     total_urls = len(urls_info)
     sources = {}
     for _, source, _, _ in urls_info:
@@ -668,15 +685,42 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
     beijing_tz = datetime.timezone(datetime.timedelta(hours=8))
     beijing_time = datetime.datetime.now(beijing_tz)
 
-    md_content += f"""---
+    update_count = 1
+    if os.path.exists(filepath):
+        with open(filepath, 'r', encoding='utf-8') as f:
+            existing_content = f.read()
+        update_count = existing_content.count('### 第') + 1
 
-*生成时间: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')} (北京时间)*
+    md_content = f"""### 第{update_count}次更新
+
+**更新时刻**: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')}
+
+**新增**: {total_urls} 篇
+
 """
 
-    with open(filepath, 'w', encoding='utf-8') as f:
+    source_groups = {}
+    for url, source, title, article_date in urls_info:
+        if source not in source_groups:
+            source_groups[source] = []
+        source_groups[source].append((url, title, article_date))
+
+    for source, articles in source_groups.items():
+        md_content += f"#### {source}\n\n"
+        md_content += "| 序号 | 文章标题 | 命中关键词 | 详细分类 |\n|------|----------|----------|----------|\n"
+        for idx, item in enumerate(articles, 1):
+            if len(item) >= 4:
+                title, _, url, keyword, sub_category = item[0], item[1], item[2], item[3], item[4] if len(item) > 4 else ("", "")
+            else:
+                title, source, url = item[0], item[1] if len(item) > 1 else source, item[2] if len(item) > 2 else ""
+                keyword, sub_category = "", ""
+            md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} |\n"
+        md_content += "\n"
+
+    with open(filepath, 'a', encoding='utf-8') as f:
         f.write(md_content)
 
-    logger.info(f"已创建每日报告: {filepath}")
+    logger.info(f"已追加内容到报告: {filepath}")
     return filepath
 
 def get_chainreactors_md_url(date_str):
