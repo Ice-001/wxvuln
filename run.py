@@ -463,8 +463,12 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     brucefeiix_count = len([u for u in urls_info if u[1] == "BruceFeIix"])
     logger.info(f"关键词过滤后统计 - Doonsec: {doonsec_count} 个, ChainReactors: {chainreactors_count} 个, BruceFeIix: {brucefeiix_count} 个")
 
+    filepath = None
+    dingtalk_content = None
     if urls_info:
-        create_daily_md_report(date_str, urls_info)
+        result = create_daily_md_report(date_str, urls_info)
+        if result:
+            filepath, dingtalk_content, added = result
 
     logger.info("=== 更新data.json ===")
     added_count = 0
@@ -482,6 +486,12 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
 
     write_json(data_file, data)
     logger.info(f"已更新data.json，添加了 {added_count} 个URL")
+
+    if dingtalk_content and added_count > 0:
+        beijing_tz = datetime.timezone(datetime.timedelta(hours=8))
+        beijing_time = datetime.datetime.now(beijing_tz)
+        title = f"📢 {date_str} 安全资讯 (第{len(dingtalk_content.split('### 第'))-1}次更新, +{added_count}篇)"
+        send_dingtalk_notification(title, dingtalk_content)
 
     return added_count, len(urls_info)
 
@@ -698,6 +708,22 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
             existing_content = f.read()
         update_count = existing_content.count('### 第') + 1
 
+    all_articles = []
+    for articles in threat_details.values():
+        all_articles.extend(articles)
+    for articles in vuln_details.values():
+        all_articles.extend(articles)
+
+    source_groups = {}
+    for item in all_articles:
+        if len(item) >= 5:
+            title, source, url, keyword, sub_category = item
+        else:
+            continue
+        if source not in source_groups:
+            source_groups[source] = []
+        source_groups[source].append((title, url, keyword, sub_category))
+
     md_content = f"""### 第{update_count}次更新
 
 **更新时刻**: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')}
@@ -706,29 +732,36 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 
 """
 
-    source_groups = {}
-    for url, source, title, article_date in urls_info:
-        if source not in source_groups:
-            source_groups[source] = []
-        source_groups[source].append((url, title, article_date))
-
     for source, articles in source_groups.items():
-        md_content += f"#### {source}\n\n"
-        md_content += "| 序号 | 文章标题 | 命中关键词 | 详细分类 |\n|------|----------|----------|----------|\n"
+        md_content += f"#### {escape_markdown(source)}\n\n"
+        md_content += "| 序号 | 文章标题 | 命中关键词 | 详细分类 | 来源 |\n|------|----------|----------|----------|------|\n"
         for idx, item in enumerate(articles, 1):
-            if len(item) >= 4:
-                title, _, url, keyword, sub_category = item[0], item[1], item[2], item[3], item[4] if len(item) > 4 else ("", "")
-            else:
-                title, source, url = item[0], item[1] if len(item) > 1 else source, item[2] if len(item) > 2 else ""
-                keyword, sub_category = "", ""
-            md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} |\n"
+            title, url, keyword, sub_category = item
+            md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} | {escape_markdown(source)} |\n"
         md_content += "\n"
 
     with open(filepath, 'a', encoding='utf-8') as f:
         f.write(md_content)
 
     logger.info(f"已追加内容到报告: {filepath}")
-    return filepath
+
+    md_content_for_dingtalk = f"""### 第{update_count}次更新
+
+**更新时刻**: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')}
+
+**新增**: {total_urls} 篇
+
+"""
+
+    for source, articles in source_groups.items():
+        md_content_for_dingtalk += f"#### {escape_markdown(source)}\n\n"
+        md_content_for_dingtalk += "| 序号 | 文章标题 | 命中关键词 | 详细分类 | 来源 |\n|------|----------|----------|----------|------|\n"
+        for idx, item in enumerate(articles, 1):
+            title, url, keyword, sub_category = item
+            md_content_for_dingtalk += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} | {escape_markdown(source)} |\n"
+        md_content_for_dingtalk += "\n"
+
+    return filepath, md_content_for_dingtalk, total_urls
 
 def get_chainreactors_md_url(date_str):
     """
