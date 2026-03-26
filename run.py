@@ -153,76 +153,6 @@ def send_dingtalk_notification(title, content):
     return True
 
 
-def send_task_summary_notification(date_str, total_urls, added_count, skipped_count):
-    """
-    发送任务统计信息（当无新增文章时）
-    """
-    logger.info("开始 send_task_summary_notification")
-    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
-    appsecret = os.environ.get("DINGDING_SECRET")
-    logger.info(f"DINGDING_ACCESS_TOKEN 存在: {bool(appkey)}")
-    logger.info(f"DINGDING_SECRET 存在: {bool(appsecret)}")
-
-    if not appkey or not appsecret:
-        logger.warning("钉钉访问密钥未设置，跳过通知")
-        return
-
-    title = f"📊 {date_str} 任务执行统计"
-    content = f"""### 📊 {date_str} 任务执行统计
-
-**执行时间**: {datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')}
-
-**数据统计**:
-- 匹配文章数: {total_urls}
-- 新增文章数: {added_count}
-- 跳过文章数: {skipped_count}
-
----
-*微信安全文章归档系统* 🤖
-"""
-
-    send_dingtalk_notification(title, content)
-
-
-def notify_daily_report(date_str, md_dir="md"):
-    """
-    发送每日报告的钉钉通知（发送完整md内容）
-    """
-    logger.info("开始 notify_daily_report")
-    appkey = os.environ.get("DINGDING_ACCESS_TOKEN")
-    appsecret = os.environ.get("DINGDING_SECRET")
-    logger.info(f"DINGDING_ACCESS_TOKEN 存在: {bool(appkey)}")
-    logger.info(f"DINGDING_SECRET 存在: {bool(appsecret)}")
-
-    if not appkey or not appsecret:
-        logger.warning("钉钉访问密钥未设置，跳过通知")
-        return
-
-    dt = datetime.datetime.strptime(date_str, "%Y-%m-%d")
-    year = dt.strftime('%Y')
-    month = dt.strftime('%Y-%m')
-    month_dir = os.path.join(md_dir, year, month)
-
-    if not os.path.exists(month_dir):
-        logger.warning(f"报告目录不存在: {month_dir}")
-        return
-
-    md_files = [f for f in os.listdir(month_dir) if f.startswith(date_str) and f.endswith('.md')]
-    if not md_files:
-        logger.warning(f"报告文件不存在: {date_str}")
-        return
-    
-    md_files.sort()
-    filepath = os.path.join(month_dir, md_files[-1])
-    logger.info(f"使用最新报告文件: {filepath}")
-
-    with open(filepath, 'r', encoding='utf-8') as f:
-        md_content = f.read()
-
-    title = f"📢 {date_str} 安全资讯 ({len(md_content.split(chr(10)))}条)"
-
-    send_dingtalk_notification(title, md_content)
-
 def get_doonsec_url(target_date=None):
     '''从 Doonsec RSS 获取指定日期的URL、日期和标题，返回(url, date, title)元组列表'''
     logger.info("开始获取Doonsec RSS")
@@ -1026,15 +956,6 @@ def main():
             added_count, total_urls = process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls, data, data_file)
             skipped_count = len(doonsec_list) + len(chainreactors_urls) + len(brucefeiix_urls) - total_urls
             logger.info(f"处理结果: 新增 {added_count} 个, 总匹配 {total_urls} 个, 跳过 {skipped_count} 个")
-
-            logger.info(f"准备发送钉钉通知...")
-            if added_count > 0:
-                logger.info(f"有新文章，开始发送每日报告...")
-                notify_daily_report(date_str)
-            else:
-                logger.info(f"无新文章，开始发送任务统计...")
-                send_task_summary_notification(date_str, total_urls, added_count, skipped_count)
-            logger.info(f"钉钉通知发送完成")
         except Exception as e:
             logger.error(f"处理日期 {date_str} 时发生错误: {e}")
             logger.error("跳过当前日期的处理")
