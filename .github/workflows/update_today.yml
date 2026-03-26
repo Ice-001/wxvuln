@@ -3,7 +3,7 @@ name: update
 on:
   workflow_dispatch:
   schedule:
-    - cron: '0 1,7 * * *'
+    - cron: '0 1,7,14 * * *'
 permissions:
   contents: write
   actions: read
