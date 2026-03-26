@@ -52,7 +52,7 @@ md/
 | 供应链 | 供应链, 第三方组件 |
 | 安全合规 | 合规, 等保, ISO27001, GDPR, 安全审计, 风险评估 |
 | 数据安全 | 数据安全, 数据治理, 数据加密, DLP, 数据库安全 |
-| AI安全 | AI安全, 大模型安全, LLM安全, 提示注入, AI治理 |
+| AI安全 | AI安全, 大模型安全, LLM, Agent, AIGC, 提示注入, RAG, AI越狱, AI幻觉, AI红队, AI治理, 对抗样本, 对抗攻击, 模型投毒, Skill, Function Call |
 | CTF | WEB, PWN, CRYPTO, REVERSE, MISC, WriteUp, WP |
 
 ### 漏洞类型分类

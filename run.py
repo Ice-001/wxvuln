@@ -332,9 +332,22 @@ def filter_by_keywords(urls_info):
         '安全合规', '合规管理', '合规体系', '合规制度',
 
         # ===== AI安全 =====
-        'AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'ChatGPT安全',
-        'GPT安全', 'AIGC安全', '深度学习安全', '神经网络安全',
-        'AI对抗', 'AI注入', '提示注入', '模型安全', '算法安全', 'AI治理',
+        'AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'LLM', 'Agent', 'Agentic',
+        'ChatGPT安全', 'GPT安全', 'AIGC安全', 'AIGC', '深度学习安全', '神经网络安全',
+        'AI对抗', 'AI注入', '提示注入', '提示工程', '模型安全', '算法安全', 'AI治理',
+        'AI安全威胁', 'AI漏洞', 'AI攻击', 'AI恶意', 'AI滥用', 'AI幻觉', 'AI越狱',
+        'RAG', '向量数据库', 'Embedding', '知识库安全', 'LLM安全', 'GPT安全', 'Claude安全',
+        'Gemini安全', 'Kimi安全', '文心一言安全', '通义千问安全', '智谱安全',
+        'Agent安全', 'Multi-Agent', 'Agent攻击', 'AIAgent', 'OpenAI安全', 'OpenClaw',
+        '大模型攻击', '大模型漏洞', 'LLM幻觉', 'LLM注入', 'LLM越狱', 'LLM对抗',
+        'AI隐私', 'AI数据泄露', 'AI训练数据', 'AI后门', 'AI投毒', 'AI数据投毒', '模型投毒',
+        '大模型投毒', '训练数据投毒', '数据污染', '后门攻击', '后门植入', '对抗样本',
+        '对抗攻击', '对抗干扰', 'Adversarial', 'Adversarial Attack',
+        'ChatGPT', 'Claude', 'Gemini', 'Kimi', '文心一言', '通义千问', '智谱AI', '百川AI', '360智脑',
+        '模型版权', 'AI合规', 'AI伦理', 'AI监管', 'AI安全评估', 'AI红队', 'AI渗透测试',
+        'Skill', 'Function Call', '工具调用', 'Agent能力', 'Agent失控', 'Agent滥用',
+        '思维链', 'Chain-of-Thought', 'CoT', '安全Agent', '可信AI', '可解释AI', 'XAI',
+        '模型蒸馏', '知识蒸馏', '模型压缩', '模型窃取', '模型逆向', '模型泄露',
         
         # ===== 应用与系统安全 =====
         '应用安全', 'Web安全', '移动安全', 'Web应用安全', '移动应用安全', 'API安全',
@@ -511,7 +524,7 @@ def analyze_security_threats(urls_info):
         '供应链': ['供应链', '第三方', '组件'],
         '安全合规': ['合规', '等保', 'ISO27001', 'GDPR', '数据保护', '隐私合规', '安全审计', '安全评估', '风险评估', '治理', '审计'],
         '数据安全': ['数据安全', '数据治理', '数据分类', '数据加密', '数据脱敏', '数据备份', '数据恢复', 'DLP', '数据库安全', '数据生命周期'],
-        'AI安全': ['AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'ChatGPT安全', 'GPT安全', 'AIGC安全', '深度学习安全', '机器学习安全', '神经网络安全', 'AI对抗', 'AI注入', '提示注入', '模型安全', '算法安全', 'AI治理'],
+        'AI安全': ['AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'LLM', 'Agent', 'Agentic', 'ChatGPT安全', 'GPT安全', 'AIGC安全', 'AIGC', '深度学习安全', '神经网络安全', 'AI对抗', 'AI注入', '提示注入', '提示工程', '模型安全', '算法安全', 'AI治理', 'AI安全威胁', 'AI漏洞', 'AI攻击', 'AI恶意', 'AI滥用', 'AI幻觉', 'AI越狱', 'RAG', '向量数据库', 'Embedding', '知识库安全', 'Claude安全', 'Gemini安全', 'Kimi安全', '文心一言安全', '通义千问安全', '智谱安全', 'Agent安全', 'Multi-Agent', 'Agent攻击', 'AIAgent', 'OpenAI安全', 'OpenClaw', '大模型攻击', '大模型漏洞', 'LLM幻觉', 'LLM注入', 'LLM越狱', 'LLM对抗', 'AI隐私', 'AI数据泄露', 'AI训练数据', 'AI后门', 'AI投毒', 'AI数据投毒', '模型投毒', '大模型投毒', '训练数据投毒', '数据污染', '后门攻击', '后门植入', '对抗样本', '对抗攻击', '对抗干扰', 'Adversarial', 'Skill', 'Function Call', '工具调用', 'Agent能力', 'Agent失控', 'Agent滥用', '思维链', 'Chain-of-Thought', 'CoT', '安全Agent', '可信AI', '可解释AI', 'XAI', '模型蒸馏', '知识蒸馏', '模型压缩', '模型窃取', '模型逆向', '模型泄露', 'ChatGPT', 'Claude', 'Gemini', 'Kimi', '文心一言', '通义千问', '智谱AI', '百川AI', '360智脑', '模型版权', 'AI合规', 'AI伦理', 'AI监管', 'AI安全评估', 'AI红队', 'AI渗透测试'],
         'CTF': list(set(keyword for keywords in ctf_subcategories.values() for keyword in keywords))
     }
 
