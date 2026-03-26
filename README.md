@@ -1,6 +1,6 @@
 # 微信安全文章归档系统
 
-[![GitHub Actions](https://github.com/gelusus/wxvl/actions/workflows/update_today.yml/badge.svg)](https://github.com/gelusus/wxvl/actions)
+[![GitHub Actions](https://github.com/Ice-001/wxvuln/actions/workflows/update_today.yml/badge.svg)](https://github.com/Ice-001/wxvuln/actions)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 > 🚀 **自动化安全资讯聚合工具** - 抓取、过滤、归档微信公众号安全文章，自动推送钉钉通知
@@ -176,6 +176,7 @@ python3 run.py --history
 |--------|------|
 | `DINGDING_ACCESS_TOKEN` | 钉钉机器人 access_token |
 | `DINGDING_SECRET` | 钉钉加签密钥 |
+| `DOONSEC_SESSION` | Doonsec 网站 session token（可选） |
 
 ## 📁 项目结构
 
@@ -196,7 +197,7 @@ wxvuln/
 
 ## ⚠️ 注意事项
 
-1. **敏感信息**：代码中包含 Doonsec 的 session token，建议使用环境变量
+1. **敏感信息**：Doonsec session token 已移至环境变量 `DOONSEC_SESSION`，建议在 GitHub Secrets 中配置
 2. **GitHub Actions**：需要配置 GitHub Secrets 才能发送钉钉通知
 3. **数据去重**：依赖 `data.json` 文件，删除会导致重复处理
 
@@ -207,3 +208,16 @@ wxvuln/
 ## 📄 许可证
 
 MIT License
+
+## 🙏 项目渊源
+
+本项目基于以下项目扩展而来：
+- [4ESTSEC/wxvl](https://github.com/4ESTSEC/wxvl) - 初始构思
+- [20142995/wxvl](https://github.com/20142995/wxvl) - 安全分类体系参考
+
+**本项目改进点：**
+- 多层级关键词分类体系（威胁类型 → 漏洞类型 → CTF子分类）
+- 追加写入的 md 报告模式
+- 智能钉钉推送（只推送重点关注分类）
+- 报告内容 Markdown 转义处理
+- data.json 时间戳支持

@@ -187,11 +187,16 @@ def get_doonsec_url(target_date=None):
     logger.info("开始获取Doonsec RSS")
     if target_date:
         logger.info(f"目标日期: {target_date}")
-    
+
+    session_token = os.environ.get("DOONSEC_SESSION")
+    if not session_token:
+        logger.warning("DOONSEC_SESSION 环境变量未设置，Doonsec RSS 获取可能受限")
+        session_token = ""
+
     cookies = {
         'UM_follow': 'True',
         'UM_distinctids': 'fgmr',
-        'session': 'eyJfcGVybWFuZW50Ijp0cnVlLCJjc3JmX3Rva2VuIjoiMzU2ZDE4OTcwZjliZDljY2NjN2M3YzlkMzRhOGVlZWQyZDk1NmI1ZSIsInZpc3RvciI6ImZHTXJGQXBlVndRUnZrWjJHdWplV2gifQ.ZzidRw.GyjS15N12JYU0TByO31rrwBIiPY',
+        'session': session_token,
     }
     headers = {
         'accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',

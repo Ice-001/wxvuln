@@ -27,6 +27,7 @@ jobs:
       env:
         DINGDING_ACCESS_TOKEN: ${{ secrets.DINGDING_ACCESS_TOKEN }}
         DINGDING_SECRET: ${{ secrets.DINGDING_SECRET }}
+        DOONSEC_SESSION: ${{ secrets.DOONSEC_SESSION }}
         GH_TOKEN: ${{ secrets.GH_TOKEN }}
       run: |
         python run.py 2>&1 | tee /tmp/run_output.log
