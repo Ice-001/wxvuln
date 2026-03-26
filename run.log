@@ -49577,3 +49577,40 @@
 2026-03-26 09:54:36,809 - INFO - 分片发送成功: 📊 2026-03-26 任务执行统计
 2026-03-26 09:54:36,810 - INFO - 钉钉通知发送完成
 2026-03-26 09:54:36,810 - INFO - === 执行完成 ===
+2026-03-26 09:55:53,750 - INFO - === 开始执行微信文章归档工具 ===
+2026-03-26 09:55:53,751 - INFO - 数据文件: data.json
+2026-03-26 09:55:53,751 - INFO - 已加载 83 条历史记录
+2026-03-26 09:55:53,751 - INFO - === 开始今日拉取 ===
+2026-03-26 09:55:53,751 - INFO - 开始获取Doonsec RSS
+2026-03-26 09:55:53,751 - INFO - 目标日期: 2026-03-26
+2026-03-26 09:55:55,687 - INFO - Doonsec RSS请求成功
+2026-03-26 09:55:55,688 - INFO - RSS中共有 200 个条目
+2026-03-26 09:55:55,689 - INFO - Doonsec获取到 106 个2026-03-26的微信文章URL
+2026-03-26 09:55:55,690 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-26.md
+2026-03-26 09:55:58,745 - INFO - ChainReactors md文件下载状态码: 429
+2026-03-26 09:55:58,745 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-03-26.md 状态码: 429
+2026-03-26 09:55:58,745 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-03-26.md
+2026-03-26 09:55:58,800 - INFO - BruceFeIix md文件下载状态码: 200
+2026-03-26 09:55:58,802 - INFO - BruceFeIix获取到 167 个URL
+2026-03-26 09:55:58,802 - INFO - === 开始处理 2026-03-26 的数据 ===
+2026-03-26 09:55:58,802 - INFO - Doonsec原始数据: 106 个
+2026-03-26 09:55:58,802 - INFO - ChainReactors原始数据: 0 个
+2026-03-26 09:55:58,802 - INFO - BruceFeIix原始数据: 167 个
+2026-03-26 09:55:58,802 - INFO - 去重后共 190 个URL待处理，跳过 83 个重复URL
+2026-03-26 09:55:58,803 - INFO - 去重后统计 - Doonsec: 76 个, ChainReactors: 0 个, BruceFeIix: 114 个
+2026-03-26 09:55:58,803 - INFO - === 开始关键词过滤 ===
+2026-03-26 09:55:58,810 - INFO - 关键词过滤: 匹配 0 个，跳过 190 个
+2026-03-26 09:55:58,810 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-03-26 09:55:58,810 - INFO - === 更新data.json ===
+2026-03-26 09:55:58,810 - INFO - 已更新data.json，添加了 0 个URL
+2026-03-26 09:55:58,811 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 273 个
+2026-03-26 09:55:58,811 - INFO - 准备发送钉钉通知...
+2026-03-26 09:55:58,811 - INFO - 无新文章，开始发送任务统计...
+2026-03-26 09:55:58,811 - INFO - 开始 send_task_summary_notification
+2026-03-26 09:55:58,811 - INFO - DINGDING_ACCESS_TOKEN 存在: True
+2026-03-26 09:55:58,811 - INFO - DINGDING_SECRET 存在: True
+2026-03-26 09:55:58,811 - INFO - 开始 send_dingtalk_notification
+2026-03-26 09:55:58,811 - INFO - robot_url 生成结果: True
+2026-03-26 09:55:59,479 - INFO - 分片发送成功: 📊 2026-03-26 任务执行统计
+2026-03-26 09:55:59,480 - INFO - 钉钉通知发送完成
+2026-03-26 09:55:59,480 - INFO - === 执行完成 ===
