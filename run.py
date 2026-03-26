@@ -366,12 +366,11 @@ def filter_by_keywords(urls_info):
         '合规', '等保', 'GDPR', '数据保护', '隐私合规', '安全合规',
         '审计', '治理', '风险评估', '合规审计', '合规检查', '合规报告',
         '安全合规', '合规管理', '合规体系', '合规制度',
-        
-        # ===== 云安全与新兴技术 =====
-        '云安全', '容器安全', 'DevSecOps', '云原生安全', '微服务安全',
-        '区块链安全', '人工智能安全', '机器学习安全', '深度学习安全',
-        '量子计算威胁', 'AI安全威胁', '5G安全威胁', '边缘计算安全',
-        '零信任架构', '微分段', '微隔离', '自适应安全', '智能安全',
+
+        # ===== AI安全 =====
+        'AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'ChatGPT安全',
+        'GPT安全', 'AIGC安全', '深度学习安全', '神经网络安全',
+        'AI对抗', 'AI注入', '提示注入', '模型安全', '算法安全', 'AI治理',
         
         # ===== 应用与系统安全 =====
         '应用安全', 'Web安全', '移动安全', 'Web应用安全', '移动应用安全', 'API安全',
@@ -468,7 +467,11 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     if urls_info:
         result = create_daily_md_report(date_str, urls_info)
         if result:
-            filepath, dingtalk_content, added = result
+            filepath, dingtalk_content, added, all_articles = result
+        else:
+            all_articles = []
+    else:
+        all_articles = []
 
     logger.info("=== 更新data.json ===")
     added_count = 0
@@ -487,11 +490,37 @@ def process_one_day(date_str, doonsec_list, chainreactors_urls, brucefeiix_urls,
     write_json(data_file, data)
     logger.info(f"已更新data.json，添加了 {added_count} 个URL")
 
-    if dingtalk_content and added_count > 0:
+    if all_articles and added_count > 0:
+        priority_categories = ['AI安全', '数据安全', '安全合规']
+        security_articles = [(cat, item) for cat, item, src in all_articles if cat in priority_categories]
+
+        if not security_articles:
+            logger.info("本次无AI安全/数据安全/安全合规类新增文章，跳过钉钉通知")
+            return added_count, len(urls_info)
+
         beijing_tz = datetime.timezone(datetime.timedelta(hours=8))
         beijing_time = datetime.datetime.now(beijing_tz)
-        title = f"📢 {date_str} 安全资讯 (第{len(dingtalk_content.split('### 第'))-1}次更新, +{added_count}篇)"
-        send_dingtalk_notification(title, dingtalk_content)
+
+        category_counts = {}
+        for cat, item, src in all_articles:
+            category_counts[cat] = category_counts.get(cat, 0) + 1
+
+        title = f"📢 {date_str} 安全资讯 (+{added_count}篇)"
+
+        card_content = f"**更新时刻**: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')}\n"
+        card_content += f"**本次新增**: {added_count} 篇\n\n"
+
+        sorted_counts = sorted(category_counts.items(), key=lambda x: x[1], reverse=True)
+        card_content += "**各分类统计**:\n"
+        for cat, count in sorted_counts:
+            card_content += f"- {cat}: {count}篇\n"
+
+        card_content += "\n**重点关注（AI安全/数据安全/安全合规）**:\n"
+        for category, item in security_articles:
+            title_val, source, url, keyword, sub_category = item
+            card_content += f"- 【{escape_markdown(category)}】[{escape_markdown(title_val)}]({url})\n"
+
+        send_dingtalk_notification(title, card_content)
 
     return added_count, len(urls_info)
 
@@ -518,6 +547,7 @@ def analyze_security_threats(urls_info):
         '供应链': ['供应链', '第三方', '组件'],
         '安全合规': ['合规', '等保', 'ISO27001', 'GDPR', '数据保护', '隐私合规', '安全审计', '安全评估', '风险评估', '治理', '审计'],
         '数据安全': ['数据安全', '数据治理', '数据分类', '数据加密', '数据脱敏', '数据备份', '数据恢复', 'DLP', '数据库安全', '数据生命周期'],
+        'AI安全': ['AI安全', '人工智能安全', '大模型安全', 'LLM安全', 'ChatGPT安全', 'GPT安全', 'AIGC安全', '深度学习安全', '机器学习安全', '神经网络安全', 'AI对抗', 'AI注入', '提示注入', '模型安全', '算法安全', 'AI治理'],
         'CTF': list(set(keyword for keywords in ctf_subcategories.values() for keyword in keywords))
     }
 
@@ -630,7 +660,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 
     if not all_urls:
         logger.info("没有新的URL需要添加")
-        return filepath, "", 0
+        return filepath, "", 0, []
 
     logger.info(f"新增 {len(all_urls)} 个URL")
 
@@ -718,6 +748,14 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
         if articles:
             vuln_groups[category] = articles
 
+    all_articles = []
+    for category, articles in threat_groups.items():
+        for item in articles:
+            all_articles.append((category, item, "威胁"))
+    for category, articles in vuln_groups.items():
+        for item in articles:
+            all_articles.append((category, item, "漏洞"))
+
     md_content = f"""### 第{update_count}次更新
 
 **更新时刻**: {beijing_time.strftime('%Y-%m-%d %H:%M:%S')}
@@ -779,7 +817,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
                 md_content_for_dingtalk += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(source)} |\n"
             md_content_for_dingtalk += "\n"
 
-    return filepath, md_content_for_dingtalk, total_urls
+    return filepath, md_content_for_dingtalk, total_urls, all_articles
 
 def get_chainreactors_md_url(date_str):
     """
