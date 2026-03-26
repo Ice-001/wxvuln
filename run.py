@@ -27,17 +27,46 @@ logger = logging.getLogger(__name__)
 
 
 def write_json(path, data, encoding="utf8"):
-    """写入json"""
+    """写入json，支持时间戳"""
+    output = {}
+    if os.path.exists(path):
+        try:
+            existing = json.loads(open(path, "r", encoding=encoding).read())
+            if "urls" in existing:
+                output = existing
+        except:
+            pass
+
+    beijing_tz = datetime.timezone(datetime.timedelta(hours=8))
+    beijing_time = datetime.datetime.now(beijing_tz)
+    timestamp = beijing_time.strftime('%Y-%m-%d %H:%M:%S')
+
+    if "urls" not in output:
+        output = {"urls": {}}
+
+    for url, info in data.items():
+        if isinstance(info, dict):
+            output["urls"][url] = info
+        else:
+            output["urls"][url] = {"title": info, "added_at": timestamp}
+
+    output["last_updated"] = timestamp
+
     with open(path, "w", encoding=encoding) as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+        json.dump(output, f, ensure_ascii=False, indent=4)
 
 
 def read_json(path, default_data={}, encoding="utf8"):
-    """读取json"""
+    """读取json，兼容旧格式"""
     data = {}
     if os.path.exists(path):
         try:
-            data = json.loads(open(path, "r", encoding=encoding).read())
+            content = json.loads(open(path, "r", encoding=encoding).read())
+            if isinstance(content, dict) and "urls" in content:
+                data = {url: info["title"] if isinstance(info, dict) else info
+                       for url, info in content["urls"].items()}
+            else:
+                data = content
         except:
             data = default_data
             write_json(path, data, encoding=encoding)
