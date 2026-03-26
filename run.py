@@ -630,7 +630,7 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 
     if not all_urls:
         logger.info("没有新的URL需要添加")
-        return filepath
+        return filepath, "", 0
 
     logger.info(f"新增 {len(all_urls)} 个URL")
 
@@ -708,21 +708,15 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
             existing_content = f.read()
         update_count = existing_content.count('### 第') + 1
 
-    all_articles = []
-    for articles in threat_details.values():
-        all_articles.extend(articles)
-    for articles in vuln_details.values():
-        all_articles.extend(articles)
+    threat_groups = {}
+    for category, articles in threat_details.items():
+        if articles:
+            threat_groups[category] = articles
 
-    source_groups = {}
-    for item in all_articles:
-        if len(item) >= 5:
-            title, source, url, keyword, sub_category = item
-        else:
-            continue
-        if source not in source_groups:
-            source_groups[source] = []
-        source_groups[source].append((title, url, keyword, sub_category))
+    vuln_groups = {}
+    for category, articles in vuln_details.items():
+        if articles:
+            vuln_groups[category] = articles
 
     md_content = f"""### 第{update_count}次更新
 
@@ -732,13 +726,25 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 
 """
 
-    for source, articles in source_groups.items():
-        md_content += f"#### {escape_markdown(source)}\n\n"
-        md_content += "| 序号 | 文章标题 | 命中关键词 | 详细分类 | 来源 |\n|------|----------|----------|----------|------|\n"
-        for idx, item in enumerate(articles, 1):
-            title, url, keyword, sub_category = item
-            md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} | {escape_markdown(source)} |\n"
-        md_content += "\n"
+    if threat_groups:
+        md_content += "#### 威胁类型\n\n"
+        for category, articles in threat_groups.items():
+            md_content += f"##### {escape_markdown(category)}\n\n"
+            md_content += "| 序号 | 文章标题 | 命中关键词 | 来源 |\n|------|----------|----------|------|\n"
+            for idx, item in enumerate(articles, 1):
+                title, source, url, keyword, sub_category = item
+                md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(source)} |\n"
+            md_content += "\n"
+
+    if vuln_groups:
+        md_content += "#### 漏洞类型\n\n"
+        for category, articles in vuln_groups.items():
+            md_content += f"##### {escape_markdown(category)}\n\n"
+            md_content += "| 序号 | 文章标题 | 命中关键词 | 来源 |\n|------|----------|----------|------|\n"
+            for idx, item in enumerate(articles, 1):
+                title, source, url, keyword, sub_category = item
+                md_content += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(source)} |\n"
+            md_content += "\n"
 
     with open(filepath, 'a', encoding='utf-8') as f:
         f.write(md_content)
@@ -753,13 +759,25 @@ def create_daily_md_report(date_str, urls_info, md_dir="md"):
 
 """
 
-    for source, articles in source_groups.items():
-        md_content_for_dingtalk += f"#### {escape_markdown(source)}\n\n"
-        md_content_for_dingtalk += "| 序号 | 文章标题 | 命中关键词 | 详细分类 | 来源 |\n|------|----------|----------|----------|------|\n"
-        for idx, item in enumerate(articles, 1):
-            title, url, keyword, sub_category = item
-            md_content_for_dingtalk += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(sub_category)} | {escape_markdown(source)} |\n"
-        md_content_for_dingtalk += "\n"
+    if threat_groups:
+        md_content_for_dingtalk += "#### 威胁类型\n\n"
+        for category, articles in threat_groups.items():
+            md_content_for_dingtalk += f"##### {escape_markdown(category)}\n\n"
+            md_content_for_dingtalk += "| 序号 | 文章标题 | 命中关键词 | 来源 |\n|------|----------|----------|------|\n"
+            for idx, item in enumerate(articles, 1):
+                title, source, url, keyword, sub_category = item
+                md_content_for_dingtalk += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(source)} |\n"
+            md_content_for_dingtalk += "\n"
+
+    if vuln_groups:
+        md_content_for_dingtalk += "#### 漏洞类型\n\n"
+        for category, articles in vuln_groups.items():
+            md_content_for_dingtalk += f"##### {escape_markdown(category)}\n\n"
+            md_content_for_dingtalk += "| 序号 | 文章标题 | 命中关键词 | 来源 |\n|------|----------|----------|------|\n"
+            for idx, item in enumerate(articles, 1):
+                title, source, url, keyword, sub_category = item
+                md_content_for_dingtalk += f"| {idx} | [{escape_markdown(title)}]({url}) | {escape_markdown(keyword)} | {escape_markdown(source)} |\n"
+            md_content_for_dingtalk += "\n"
 
     return filepath, md_content_for_dingtalk, total_urls
 
