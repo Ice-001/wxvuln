@@ -2,480 +2,616 @@
     "urls": {
         "https://mp.weixin.qq.com/s/3jfefGCUKUgP8Cua5UeWDg": {
             "title": "OpenClaw 漏洞频发：2026-03-25 再曝权限提升漏洞，可致远程代码执行 | 已复现",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/GyIJsixOhs9JWS2JzWo4xg": {
             "title": "前端逆向神器｜AI_JS_DEBUGGER：自动 JS 调试 + 登录处加解密分析，一键生成报告与脚本",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/U_Fr2dptND64lKTqZd_g5A": {
             "title": "混淆的 VBS 和 PNG 加载器利用 RAT 有效载荷驱动新的 Open Directory 恶意软件活动",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/U2FPvMwx2KTiLJUAX92Hlw": {
             "title": "CTF学习笔记——一组AI学习靶场",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/2s73Qmv0mP9VTdC4bFdmuQ": {
             "title": "【提权基础入门第四节】启动文件夹提权：被忽视的Windows高危后门",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/2uZOnR22eJl3PXjC9f-EmA": {
             "title": "高级免杀对抗&amp;红队武器化开发（高质量！速来！）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Tw0ZMfKJxDKa6oLRwZ5XBQ": {
             "title": "【涨知识】远控木马KTLVdoor加密通信分析",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/AXQUCExYLd3hGeSN8VuJrg": {
             "title": "AI赋能CTF比赛-Web类(burpmcp+kalimcp)",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/qfJ0QfJTSyoO4wTaEs7hsw": {
             "title": "我用一句话让AI逆向出WASM中的加密算法",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/0bmHHOXCWXRUN73Ob_axfA": {
             "title": "LiteLLM供应链攻击分析：多段被注释备用载荷的发现",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/SlDo_WoezFm4r6SMBVFn4A": {
             "title": "互联网暴露面梳理全指南：含AI 智能体专项治理，全行业安全人实战手册",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/0SHlg4d0Mw4Eb-32FIL8hw": {
             "title": "九篇技术分析归零后，我决定静音45天——真心期待那句“这不是漏洞”",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/aAlGWV4xLj6g8TXmG0k59Q": {
             "title": "漏洞复现 | Langflow 远程代码执行漏洞(CVE-2026-33017)",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/t0u2UQYdXBeL6LNnVttY_w": {
             "title": "俄籍黑客因运营僵尸网络实施勒索攻击被判刑",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/-zNtd7axpMBVzZnh0ycv-w": {
             "title": "Oracle注入waf绕过等思路",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/0febdVM1cyKD9mVfnWHRpg": {
             "title": "企业级openVPN网络控制器架构演进",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/KkFKft-UYvIras-NbPzDQA": {
             "title": "实测~天融信大模型多模态安全网关层层阻击“看不见”的风险！",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Jx8X8i5VDYJjt_g8GcJq9A": {
             "title": "小白也能学会的红队基础：隐匿、工具、流量、善后全攻略",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/fpgO3evgo-eLogFkEb8sLg": {
             "title": "「SRC新手」burpsuit配置抓特定域名数据包&amp;抓包插件自动收集jsonpXSS漏洞",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/haZ9Zm1Zet3c9vHpfiMaGw": {
             "title": "安全岗位大揭秘——IT审计/合规",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/WQ8L-30b-dTZVnyDEnKzww": {
             "title": "紧急预警！勒索病毒进入高发期，服务器务必完成这 3 项自查",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/MslZ3vsNhAwy25Tm5gQBFw": {
             "title": "粤网协会发布关于举办网络攻防演练裁判员培训的通知",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/jAHl0hKQeFOj3XdZHE5biQ": {
             "title": "AIDA64 8.25.8200 Business 逆向工程与Keygen实战",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ba9qtyGsDVTcPsocYf2Uzw": {
             "title": "2026年3月25日 全球数据泄露事件一览 | 32个攻击者涉及近70起事件",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ofxXtoMWj3srU6qk_zXLZQ": {
             "title": "阿里云 AVD、长亭漏洞库、OSCS、奇安信 |多源实时漏洞监控和推送",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/i-gCtUhvj4tZ2PxBYB8KdQ": {
             "title": "AI安全技术沙龙，诚邀各位现场交流",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/bvB2c5sPIgIHhPqopo50xQ": {
             "title": "工信部两项汽车数据安全国标征求意见，明确密码技术保护",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ueBDUqHlSNJ2kSnb9r_S4Q": {
             "title": "暗网泄露:28亿推特数据泄露",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Qu18Ml1OaS3P8sKcOKe2LQ": {
             "title": "企业赏金SRC实战中危案例｜收费视频资源突破",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/aBUhlRK6pqyJBPlsWpCqkg": {
             "title": "中标快讯：某学校计算机网络及网络安全系统(第二期)采购项目，浙江万事达225.66万中",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/taJqUHEtyhkTKcmjYJUfgg": {
             "title": "数据安全技术 数据接口安全风险监测方法",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/9-dEbCf-fPa8FxjknE9svg": {
             "title": " ] [Kali Code Executor：三层Agent驱动的Kali容器渗透代码执行平台",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/tZvq6vlbDO1_eQHvX-bQbQ": {
             "title": " ] [泛微E-cology10 getEmDsList接口存在敏感信息泄露 附POC",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/gwZC9ARf1tgEhemc5Fiydg": {
             "title": " ] [红队实战指南：AI驱动的渗透测试、红队评估和漏洞挖掘",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/lSL4-CkXuygO2IQqm3jOkQ": {
             "title": " ] [想监控内网传输的文件？用Suricata这个功能就够了",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/mDWfFkqQPYQDsT8pl1FyHw": {
             "title": " ] [26年1月到3月威胁情报IOC",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/PVPM9ClI4Eb0hBu9zymOfw": {
             "title": " ] [LiteLLM 供应链攻击事件始末",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/JCDXK_QtzQelqJtxqCEXRA": {
             "title": " ] [第108天-Shiro安全攻防：从JRMP到CC1，揭秘无利用链下的RCE新思路",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/2MjqRDp3BHZEn4x5Hpzhjw": {
             "title": " ] [第107天-Shiro 550 漏洞深度解析：无 CC 依赖？CB 链一招制敌！",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ZMDSNOwPbwCIj8ARhG3MOQ": {
             "title": " ] [[漏洞复现]全程云OA QCHMS.asmx SQL注入漏洞(VEID-2026-11106)",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/4L2-OpUZg0ywKGssj6kVxQ": {
             "title": " ] [【免费送！】红队实战指南：AI驱动的渗透测试、红队评估和漏洞挖掘",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/FZy2gRQTudabTiC0HFkzCA": {
             "title": " ] [Butter Cookie——web多功能渗透测试浏览器插件",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/278ROlvOHTMuP2c8hROdnQ": {
             "title": " ] [跟着红队笔记打靶：nullbyte",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/85svgxPBqw3HLzl7Q-MMzQ": {
             "title": " ] [高级免杀对抗&amp;红队武器化开发 第七期来袭",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/xcwhwLDrP-2r_hcBGAht3A": {
             "title": " ] [一场关于AI和安全度量产品的发布直播",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/VRT-KXKSzwWupH6JdqQIUA": {
             "title": " ] [基于Firefox的Claude Code Security实测漏洞发掘",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Q9Sq5gCtN8mBHmOjxyuThQ": {
             "title": " ] [抢占职场竞争力先机！4月CISP、CISSP、CISA开班倒计时",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/foeEgdzYWGhZKb4DZC9Gfw": {
             "title": " ] [【漏洞预警】LiteLLM 投毒、Apifox 后门连发，敲响供应链安全警钟",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/nMmf2SR5dc_KSlYm6VgJ5A": {
             "title": " ] [【AI安全】守护 AI 应用？Wiz AI 应用防护平台全面上线",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/kgGrLMxuu-0VgQii3v2fGQ": {
             "title": " ] [针锋相对：Cardinal黑客的指控，安全分析师的质疑，谁将定义“真相”？",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/JRV_MmwjosBUeHzr14rsQg": {
             "title": " ] [AI驱动的“OpenClaw陷阱”活动通过植入木马的GitHub仓库攻击开发者和游戏玩家",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ex0tBqqvowS9FvpvOJCx6A": {
             "title": " ] [【安全圈】HackerOne 披露员工数据泄露事件：第三方服务商 Navia 遭入侵",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/zGBOXjoCwRpb2_652tufXg": {
             "title": " ] [【0day】深科特 LEAN MES系统 /Handler/FileSync.ashx 任意文件读取/上传/删除/SSRF等多个漏洞",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/4xdtc_uGeCtkGuaS01ATxA": {
             "title": " ] [0基础挖src最先要了解的三大经典漏洞详解，东西不多相信你能吃下！",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Kj_IL5rBqzX5PPaDAZf2Ww": {
             "title": " ] [最新版深信服官方网络安全培训课程（80集完整版）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Bnvf_AoscY4Lrlbm6CC4nA": {
             "title": " ] [WEB渗透安全工程师精英培养计划班（全阶段课程目录）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/xftWk2XyT8VHPlHIDZOn-Q": {
             "title": " ] [某平台安全等级保护培训PPT（2026最新合规版）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/D3kY-jZUFJKVrB92ZRhJzA": {
             "title": " ] [等保标准文件合集（含国标+实施指南+测评要求）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/R51CVnwSrJTkrpWcc6Ljqw": {
             "title": " ] [XX医院等保建设方案实战（医疗行业专属PPT）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/iNSBQGCm5EwXi0MvWSvw-g": {
             "title": " ] [苹果漏洞利用工具遭公开，数亿台iPhone随时可被静默入侵窃密",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/mbvoeTuDR-lJ_u1TYw6-FQ": {
             "title": " ] [一文读懂：智能体身份权限治理演进实录",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Bi4jWg_43padms17q26pcQ": {
             "title": " ] [【高危AI漏洞预警】OpenClaw环境变量注入漏洞 (CVE-2026-22177)",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/egfb9L9LBUuL3TJvOkC5qw": {
             "title": " ] [CISP-PTE考试综合靶场简单模拟测试",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/yZ_LVi21yVVvTewMcct3sw": {
             "title": " ] [从靶场到实战--双一流高校多个高危漏洞",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/LDxc2AU_8_650Qso70qyNA": {
             "title": " ] [深度解析：LiteLLM 供应链投毒事件——TeamPCP 三阶段后门全链路分析",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzA4ODEyODA3MQ==&mid=2247496611&idx=1&sn=cce8ba4de658ffb46b785ef9e39f9f5e": {
             "title": " ] [DLL注入与加载技术——动态链接库的攻防博弈",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzAwNTgyODU3NQ==&mid=2651141134&idx=1&sn=ce8088aaa763faa6b6384a47e85321d8": {
             "title": " ] [等保标准《网络安全等级保护数据安全基本要求》解读",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MjM5NTc2MDYxMw==&mid=2458612529&idx=3&sn=7d79025a5151b4542f375b33b2ad8e19": {
             "title": " ] [Linux pwn 探索篇",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI4NDY2MDMwMw==&mid=2247515729&idx=1&sn=e89ad98e20e9e813c713f2faa4fdd570": {
             "title": " ] [苹果漏洞利用工具遭公开，数亿台iPhone随时可被静默入侵窃密",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzU5OTQ0NzY3Ng==&mid=2247503266&idx=1&sn=58cb26c03713000720c480d5e8f6d217": {
             "title": " ] [国家密码管理局关于开展商用密码应用安全性评估从业人员考核的公告",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=Mzg5MTc3ODY4Mw==&mid=2247508412&idx=1&sn=9fd2677b5c2040dce82c96551d46f44f": {
             "title": " ] [安全工具被入侵，引发大规模AI供应链投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI2MTE0NTE3Mw==&mid=2651154929&idx=2&sn=0b2c472344b0746d13d952d4368ef656": {
             "title": " ] [【培训】开源情报分析师实战能力培训班-4月成都开班（有邀请函）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=Mzg5OTU1NTEwMg==&mid=2247484502&idx=1&sn=d008f35b2395766c94e37d689d1e13c0": {
             "title": " ] [litellm 供应链攻击事件分析（使用AiPy自查）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI2MjQ1NTA4MA==&mid=2247492390&idx=1&sn=c2e0f46d6e4ef0f02c37cc0a1798af43": {
             "title": " ] [OpenClaw的风险隔离与管控应对，以及渗透测试的报备合规探讨｜总第312周",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzIzMzE4NDU1OQ==&mid=2652075069&idx=3&sn=81030c6344d3eb99b31a0593ace75849": {
             "title": " ] [【安全圈】HackerOne 披露员工数据泄露事件：第三方服务商 Navia 遭入侵",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzA5MzE5MDAzOA==&mid=2664260667&idx=4&sn=6be8d18cf5754432a40fe5a1b1ef975b": {
             "title": " ] [关注 | 第三届“数信杯”数据安全大赛圆满落幕",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzU4ODQ3NTM2OA==&mid=2247504575&idx=2&sn=0602625406cc37b3c62e48b13ce706dd": {
             "title": " ] [LiteLLM 供应链攻击事件始末",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI5ODk3OTM1Ng==&mid=2247511496&idx=1&sn=62f573b1b87cbe92708cebbc20891236": {
             "title": " ] [寄生克隆 | 当 AI 助手成为蠕虫的传播加速器：Vibe Coding 时代的供应链危机",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzkxNzA3MTgyNg==&mid=2247542231&idx=1&sn=90896406142faa119526bff118a833cf": {
             "title": " ] [谷歌15年累计发放了8160万美元漏洞赏金",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzkxNzA3MTgyNg==&mid=2247542231&idx=3&sn=9bd389d197d6fce5d8af4804c3f7c0ba": {
             "title": " ] [【即将开赛】2026数字中国创新大赛·数字安全赛道-网络和数据安全产业赛",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MjM5Njc3NjM4MA==&mid=2651140862&idx=2&sn=9764a27a0247ca0de8469ee6b4950d21": {
             "title": " ] [Claude.ai曝“Claudy Day”漏洞链，聊天链接可被利用窃取敏感数据；工信部印发 2026 年信息通信业安全工作通知，强化全链条安全管控|牛览",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI0MDY1MDU4MQ==&mid=2247587371&idx=2&sn=f9da0bc552f25720f23340a014c31b66": {
             "title": " ] [Trivy漏洞扫描器遭入侵，攻击者通过GitHub Actions分发窃密恶意软件",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI0MDY1MDU4MQ==&mid=2247587371&idx=3&sn=4cd4a98d85cfa205e812ed079bcf5f8a": {
             "title": " ] [嘶吼安全动态｜国家数据局：我国AI日均Token调用量破140万亿 LiteLLM遭供应链投毒，数千企业面临数据泄露风险",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=Mzg3NjU4MDI4NQ==&mid=2247486195&idx=1&sn=bca05009483b7674da4a2276a3807c2b": {
             "title": " ] [EDR killer已成为勒索软件攻击的标准配置",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI1MzYzMjE0MQ==&mid=2247519016&idx=1&sn=4a895e7318d251e077ba720dbf7e1cef": {
             "title": " ] [一文读懂：智能体身份权限治理演进实录",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/s5kYCY7Hp2AUcGd_jBzxRQ": {
             "title": "LiteLLM遭投毒：月安装量约9500万次，你的AI密钥可能已经被泄露",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/yGts36cCYy41IA1eMGb1hA": {
             "title": "手把手教你升级OpenClaw到最新稳定版",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/k_Fr-6oR-uhMTYSRJL_THQ": {
             "title": "假“ChatGPT内测邀请”瞄准安卓用户，账号与社媒资产成主要目标",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/vnJe5rgmz_70gedgzYGqoQ": {
             "title": "AI圈地震：月安装量约9500万次的API网关LiteLLM遭投毒，波及OpenAI/Anthropic等用户",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/cmztn6TimpeGCFAxHTzMoA": {
             "title": "NVIDIA 对 Agent 安全问题交出的答卷：OpenShell 深度架构分析",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/EU-xcYj4WQp3kBCM-Gi_8Q": {
             "title": "紧急预警 | AI开发者必看LiteLLM遭PyPI供应链投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/9nAKwQuP6BlS9hZfx7Eufw": {
             "title": "OpenClaw 安全操作指南",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/_C_E2nHzauyTJqMI5gUsGQ": {
             "title": "TeamPCP一周内攻陷Trivy和LiteLLM，数千企业云密钥已在攻击者手中",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/YlpOp7ZQFLL2-shuBI_u2A": {
             "title": "我给 Claude 装了个「外置大脑」，从此它比我更记得我踩过什么坑",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/QwQiqOnJ2o5Xu_GUY7wMhA": {
             "title": "从GEO的优化到恶意skill排名作弊实践----再议315晚会曝光AI模型搜索安全问题",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/o7L9dZQuzcOV1umQJiPBMA": {
             "title": " ] [论文研读与思考|CKGFuzzer：基于代码知识图谱的 LLM 驱动的模糊测试驱动程序生成",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ZLGlNRiQKowfFuICD0saAA": {
             "title": " ] [Yakit AI Agent使用指南",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/iWxJiMFXjUHE-U77A5k6Nw": {
             "title": " ] [OpenAI推智能体商业协议，ChatGPT内可比价下单",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/mCO7Qu5fSQiS-0hOMGYj-g": {
             "title": " ] [通过 AI-Skill 分析 flutter so 文件实现明文抓包以及生成frida脚本",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/iVD96nnOBa5Wkb-alIuJCg": {
             "title": " ] [别只盯着 Claude Code 了！OpenCode + Oh My OpenCode 开启 AI 编程新纪元",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/y2m_o3Jkp7xUZyzDbQrhBw": {
             "title": " ] [开箱即用！OpenClaw实战Skill大全，新手直接起飞",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/g9EtWtWA_TuEWhmaS_wIGw": {
             "title": " ] [Agent开发｜从0实现Agent（四）：构建基于DAG图的任务系统（复杂任务协同篇）",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/JMIiELj2gtv3KrI_4625pA": {
             "title": " ] [警惕！LiteLLM 遭供应链“连环套”投毒：从 Trivy 沦陷到 4.8 亿次下载量的威胁",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/Ur9Bl4JZEfoH5XdDex6JlQ": {
             "title": " ] [用 Claude + Temporal.io 构建多 Agent 协作开发流水线",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/ENu39ZiSnfFaLOdIyW2MhQ": {
             "title": " ] [从4.8亿下载量的 LiteLLM投毒事件，看 AI 基础设施安全攻与防",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/KTK0O8Qzvh4PowUf2_sTNA": {
             "title": " ] [LiteLLM供应链投毒事件解析【聚合情报】",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/kLSaBqbeuitCvQxYskGUig": {
             "title": " ] [【安全圈】AI 圈地震：月安装量约 9500 万次的 API 网关 LiteLLM 遭投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/d676Ugk01CNdy2AiTGs5Hw": {
             "title": " ] [如何解决OpenClaw权限“Open”、数据“可捞”等安全大难题",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/8KYMylFNmMmPJK5ivd-kwA": {
             "title": " ] [AI开发者警惕！波及DSPy、MLflow等主流框架，底层库 litellm 遭投毒，专偷访问凭证",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/3013nP4IrAOkCubxjEBCZQ": {
             "title": " ] [从hackerbot-claw自动化利用到LiteLLM投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s/cxxZQJVjA3KlqeNQTAInFA": {
             "title": " ] [信通院联合腾讯云发布《云上养虾（OpenClaw）安全指南》",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzU5NDgxODU1MQ==&mid=2247504848&idx=1&sn=7a4c6d7b5e070ff2fb6e55b29b8511b2": {
             "title": " ] [今日（2026年3月25日）OpenClaw 最新安全动态总结",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MjM5NTc2MDYxMw==&mid=2458612529&idx=2&sn=cc12ddc0315e3b33608ab6df6cb2b1b0": {
             "title": " ] [Karpathy紧急发声：日下载340万次的LiteLLM被投毒，黑客一个bug意外暴露危机",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MjM5NzE1NjA0MQ==&mid=2651208257&idx=1&sn=a48f90ca30da02c458bcbba71059f7d3": {
             "title": " ] [从4.8亿下载量的 LiteLLM投毒事件，看 AI 基础设施安全攻与防",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzIwMDk1MjMyMg==&mid=2247493169&idx=1&sn=dad5f5a722804171fc503e0b1a9987f8": {
             "title": " ] [【安全预警】AI模型网关LiteLLM遭PyPI供应链投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzI2NTg4OTc5Nw==&mid=2247525546&idx=2&sn=2f039c7f1e039e0006bb51b9a6c9848e": {
             "title": " ] [热门 PyPI 包 LiteLLM 遭投毒，窃取凭据和认证令牌",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzIzMzE4NDU1OQ==&mid=2652075069&idx=2&sn=7ea915e24da062e25443aebe478f6c60": {
             "title": " ] [【安全圈】AI 圈地震：月安装量约 9500 万次的 API 网关 LiteLLM 遭投毒",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MzkxNzA3MTgyNg==&mid=2247542231&idx=2&sn=f2567798683b6792c94e5ff46a3690cd": {
             "title": " ] [紧急AI投毒情报 | 热门AI模型网关LiteLLM遭受供应链投毒，总下载量超4.8亿次！",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
         },
         "https://mp.weixin.qq.com/s?__biz=MjM5Njc3NjM4MA==&mid=2651140862&idx=1&sn=9beb776db6aac980e0dedfee68ff6bb6": {
             "title": " ] [AI 身份安全：企业数字化转型的全新防线，Agentic AI 时代必读",
-            "added_at": "2026-03-26 20:46:35"
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/GbkQTeUZLBkuKWHXiOXxUA": {
+            "title": "等保标准再扩新篇，数据安全系列公安行标解析（二）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/R4fZEDY6ExqiQz8jc4O6Tw": {
+            "title": "ADVPN（自动发现虚拟专用网络）是一种基于V",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/Pr5B5bQ9ytUUKzbkORNCug": {
+            "title": "晨星安全团队2026专项招新——以技术聚友，赴网安星辰之约",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/ws4zkzdbQCfZ3jQjO5Gylw": {
+            "title": "Apifox 供应链投毒安全事件预警与排查",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/j7VCXJLAjKnFex9pogUz3g": {
+            "title": "【漏洞复现】Langflow CSV Agent 任意代码执行（CVE-2026-27966）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/KCnE2dubNtqqbyduSud_DA": {
+            "title": "私有内容IDOR漏洞",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/IUgOTm5Hjk7fg7CFOYpNmw": {
+            "title": "等保标准再扩新篇，数据安全系列公安行标解析（二）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/AlEoCiMO2ZI1XmyUPGySjg": {
+            "title": "通过个人信息保护合规审计服务认证的专业机构名单（第二批）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/YFBtiUTE4VM0upHB1ucgUQ": {
+            "title": "TG Bot 低门槛恶意软件的温床：开源复用、AI 拼装与攻击者自我暴露",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/d7F6boeSpVGMMI8HXIDsYA": {
+            "title": "漏洞复现 | 博硕BGM Upload.ashx 存在任意文件上传漏洞",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/-rarBj11gRKo_PhqePltcQ": {
+            "title": "2026数字中国创新大赛·数字安全赛道——网络和数据安全产业赛火热报名中",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/omtdakHLJwqzFKGMjiD4jQ": {
+            "title": "关于征集2026数字中国创新大赛数字安全赛道网络和数据安全产业赛专家的通知",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/3N7ppnjQ6VdSpIxe3U4lkg": {
+            "title": "关于开展“守护者行动·数字安全”北京市大学生网络和数据安全技能专项竞赛的通知",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/Ot0_4_TGLUzndfTBDLtK1A": {
+            "title": "数字中国创新大赛・数字安全赛道网络和数据安全产业赛历届精彩回顾！2026，逐梦启航，等你来战！",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/uYBTKKyhIV48o30zSwSS_g": {
+            "title": "喜报 | 联通研究院荣获第三届“数信杯”数据安全大赛金奖",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/p-WpPbGVcenhU9CjRno3Vw": {
+            "title": "实力认证！爱加密荣膺第三届“数信杯”数据安全大赛优胜奖",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/JyP0LBU4gEEiEOOuZ-bchw": {
+            "title": "信通科技获“数信杯”数据安全大赛个人金奖、团体银奖",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/yeVcAMXed4wxmu9rIA4kTQ": {
+            "title": "斩获全国金奖！联通研究院在第三届“数信杯”数据安全大赛中脱颖而出",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/wDw9zr2X_uFF-VZzmo5WwQ": {
+            "title": "跨境数据治理转向与中国应对（学术专论）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/wMg9Hot5Llum38zNe4SQwQ": {
+            "title": "报名启动｜2026年广东省大学生计算机设计大赛——网络与数据安全挑战赛赛项说明",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/Fm_E_eIX9kU92p3-k46gag": {
+            "title": "2026年Obsidian插件生态深度解析：从AI智能到OpenClaw进阶配置",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/orMOHdDVMko29TMaGB9nxA": {
+            "title": "SourceInsight4.0 最新4.00.0150 2026版本 破解分析",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/W2rD4HsKWem-mqXtxcWEgw": {
+            "title": "150万！中移金科AIGC内容生成合成数据处理及研发项目",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/UW5tL_asStspqmGnAwKNwQ": {
+            "title": "威胁情报日报 2026-03-27",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/c6bz50ByrzR94tQOADoanA": {
+            "title": "Apifox 供应链攻击应急响应工具",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/Mq5QbqtIs8HUv66Zh5ya_Q": {
+            "title": "一张图片 = 拿下网站？文件上传漏洞深度解析",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/4FsTuwfTUlX6Yz7vVL7_NA": {
+            "title": "数据安全实战能力测评丨永信至诚「数字风洞」连续六届护航\\\"红明谷\\\"杯大赛",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/Dt0y3O09kCBEiAX3tuKlpg": {
+            "title": "漏洞预警 | Langflow远程代码执行漏洞",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/VrbuihpsTm-KIvZfw-0dLg": {
+            "title": "漏洞预警 | LEAN MES系统SQL注入漏洞",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/fxbaWgDThy77FdivkbMgGw": {
+            "title": "基于本体论与LLM的下一代智能安全运营平台",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/59s9iLTTUPxaGvue3rje1w": {
+            "title": "安全事件报告：litellm 供应链投毒事件（完整版）",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/5oYH8Y07orT8BN3LC62coQ": {
+            "title": "Silver Fox  银狐的攻击组织在 2025-2026 攻击趋势及关键IOC分析",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/j5zDryX1syF9kCK4zyLTrw": {
+            "title": "天下无贼Ⅲ：用 Agent Harness 构建虚拟 SOC，一个人的安全运营中心",
+            "added_at": "2026-03-27 11:51:25"
+        },
+        "https://mp.weixin.qq.com/s/JEImkQjAbJBA0fUN1BmhRA": {
+            "title": "一个远程桌面服务权限提升漏洞暗网22万美元",
+            "added_at": "2026-03-27 11:51:25"
         }
     },
-    "last_updated": "2026-03-26 20:46:35"
+    "last_updated": "2026-03-27 11:51:25"
 }
