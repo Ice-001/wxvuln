@@ -51914,3 +51914,29 @@
 2026-04-14 08:27:40,773 - INFO - 分片发送成功: 📢 2026-04-14 安全资讯 (+37篇)
 2026-04-14 08:27:40,774 - INFO - 处理结果: 新增 37 个, 总匹配 37 个, 跳过 239 个
 2026-04-14 08:27:40,774 - INFO - === 执行完成 ===
+2026-04-14 13:55:32,278 - INFO - === 开始执行微信文章归档工具 ===
+2026-04-14 13:55:32,278 - INFO - 数据文件: data.json
+2026-04-14 13:55:32,284 - INFO - 已加载 2013 条历史记录
+2026-04-14 13:55:32,284 - INFO - === 开始今日拉取 ===
+2026-04-14 13:55:32,284 - INFO - 开始获取Doonsec RSS
+2026-04-14 13:55:32,284 - INFO - 目标日期: 2026-04-14
+2026-04-14 14:00:11,248 - ERROR - Doonsec RSS解析失败: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-04-14 14:00:11,248 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-04-14.md
+2026-04-14 14:00:11,383 - INFO - ChainReactors md文件下载状态码: 404
+2026-04-14 14:00:11,383 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-04-14.md 状态码: 404
+2026-04-14 14:00:11,383 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-04-14.md
+2026-04-14 14:00:11,523 - INFO - BruceFeIix md文件下载状态码: 200
+2026-04-14 14:00:11,525 - INFO - BruceFeIix获取到 141 个URL
+2026-04-14 14:00:11,525 - INFO - === 开始处理 2026-04-14 的数据 ===
+2026-04-14 14:00:11,525 - INFO - Doonsec原始数据: 0 个
+2026-04-14 14:00:11,525 - INFO - ChainReactors原始数据: 0 个
+2026-04-14 14:00:11,525 - INFO - BruceFeIix原始数据: 141 个
+2026-04-14 14:00:11,525 - INFO - 去重后共 81 个URL待处理，跳过 60 个重复URL
+2026-04-14 14:00:11,525 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 81 个
+2026-04-14 14:00:11,525 - INFO - === 开始关键词过滤 ===
+2026-04-14 14:00:11,530 - INFO - 关键词过滤: 匹配 0 个，跳过 81 个
+2026-04-14 14:00:11,530 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-04-14 14:00:11,530 - INFO - === 更新data.json ===
+2026-04-14 14:00:11,546 - INFO - 已更新data.json，添加了 0 个URL
+2026-04-14 14:00:11,546 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 141 个
+2026-04-14 14:00:11,546 - INFO - === 执行完成 ===
