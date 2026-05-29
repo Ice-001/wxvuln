@@ -56173,3 +56173,31 @@
 2026-05-29 10:50:28,871 - INFO - 分片发送成功: 📢 2026-05-29 安全资讯 (+16篇)
 2026-05-29 10:50:28,872 - INFO - 处理结果: 新增 16 个, 总匹配 16 个, 跳过 24 个
 2026-05-29 10:50:28,872 - INFO - === 执行完成 ===
+2026-05-29 15:50:36,840 - INFO - === 开始执行微信文章归档工具 ===
+2026-05-29 15:50:36,841 - INFO - 数据文件: data.json
+2026-05-29 15:50:36,862 - INFO - 已加载 5932 条历史记录
+2026-05-29 15:50:36,862 - INFO - === 开始今日拉取 ===
+2026-05-29 15:50:36,862 - INFO - 开始获取Doonsec RSS
+2026-05-29 15:50:36,862 - INFO - 目标日期: 2026-05-29
+2026-05-29 15:50:38,787 - INFO - Doonsec RSS请求成功
+2026-05-29 15:50:38,788 - INFO - RSS中共有 200 个条目
+2026-05-29 15:50:38,788 - INFO - Doonsec获取到 0 个2026-05-29的微信文章URL
+2026-05-29 15:50:38,789 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-05-29.md
+2026-05-29 15:50:38,851 - INFO - ChainReactors md文件下载状态码: 404
+2026-05-29 15:50:38,851 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-05-29.md 状态码: 404
+2026-05-29 15:50:38,851 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-05-29.md
+2026-05-29 15:50:38,922 - INFO - BruceFeIix md文件下载状态码: 200
+2026-05-29 15:50:38,924 - INFO - BruceFeIix获取到 40 个URL
+2026-05-29 15:50:38,924 - INFO - === 开始处理 2026-05-29 的数据 ===
+2026-05-29 15:50:38,924 - INFO - Doonsec原始数据: 0 个
+2026-05-29 15:50:38,924 - INFO - ChainReactors原始数据: 0 个
+2026-05-29 15:50:38,924 - INFO - BruceFeIix原始数据: 40 个
+2026-05-29 15:50:38,924 - INFO - 去重后共 24 个URL待处理，跳过 16 个重复URL
+2026-05-29 15:50:38,924 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 24 个
+2026-05-29 15:50:38,924 - INFO - === 开始关键词过滤 ===
+2026-05-29 15:50:38,926 - INFO - 关键词过滤: 匹配 0 个，跳过 24 个
+2026-05-29 15:50:38,926 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-05-29 15:50:38,926 - INFO - === 更新data.json ===
+2026-05-29 15:50:38,972 - INFO - 已更新data.json，添加了 0 个URL
+2026-05-29 15:50:38,972 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 40 个
+2026-05-29 15:50:38,972 - INFO - === 执行完成 ===
