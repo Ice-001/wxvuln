@@ -56229,3 +56229,34 @@
 2026-05-30 04:54:47,610 - INFO - 已更新data.json，添加了 0 个URL
 2026-05-30 04:54:47,610 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 0 个
 2026-05-30 04:54:47,610 - INFO - === 执行完成 ===
+2026-05-30 09:22:30,806 - INFO - === 开始执行微信文章归档工具 ===
+2026-05-30 09:22:30,807 - INFO - 数据文件: data.json
+2026-05-30 09:22:30,823 - INFO - 已加载 5932 条历史记录
+2026-05-30 09:22:30,823 - INFO - === 开始今日拉取 ===
+2026-05-30 09:22:30,823 - INFO - 开始获取Doonsec RSS
+2026-05-30 09:22:30,824 - INFO - 目标日期: 2026-05-30
+2026-05-30 09:26:47,900 - ERROR - Doonsec RSS解析失败: ('Connection aborted.', ConnectionResetError(104, 'Connection reset by peer'))
+2026-05-30 09:26:47,900 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-05-30.md
+2026-05-30 09:26:48,010 - INFO - ChainReactors md文件下载状态码: 404
+2026-05-30 09:26:48,010 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-05-30.md 状态码: 404
+2026-05-30 09:26:48,010 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-05-30.md
+2026-05-30 09:26:48,149 - INFO - BruceFeIix md文件下载状态码: 200
+2026-05-30 09:26:48,150 - INFO - BruceFeIix获取到 49 个URL
+2026-05-30 09:26:48,150 - INFO - === 开始处理 2026-05-30 的数据 ===
+2026-05-30 09:26:48,150 - INFO - Doonsec原始数据: 0 个
+2026-05-30 09:26:48,150 - INFO - ChainReactors原始数据: 0 个
+2026-05-30 09:26:48,150 - INFO - BruceFeIix原始数据: 49 个
+2026-05-30 09:26:48,151 - INFO - 去重后共 49 个URL待处理，跳过 0 个重复URL
+2026-05-30 09:26:48,151 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 49 个
+2026-05-30 09:26:48,151 - INFO - === 开始关键词过滤 ===
+2026-05-30 09:26:48,153 - INFO - 关键词过滤: 匹配 25 个，跳过 24 个
+2026-05-30 09:26:48,153 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 25 个
+2026-05-30 09:26:48,170 - INFO - 新增 25 个URL
+2026-05-30 09:26:48,171 - INFO - 已追加内容到报告: md/2026/2026-05/2026-05-30.md
+2026-05-30 09:26:48,171 - INFO - === 更新data.json ===
+2026-05-30 09:26:48,215 - INFO - 已更新data.json，添加了 25 个URL
+2026-05-30 09:26:48,216 - INFO - 开始 send_dingtalk_notification
+2026-05-30 09:26:48,216 - INFO - robot_url 生成结果: True
+2026-05-30 09:26:49,097 - INFO - 分片发送成功: 📢 2026-05-30 安全资讯 (+25篇)
+2026-05-30 09:26:49,098 - INFO - 处理结果: 新增 25 个, 总匹配 25 个, 跳过 24 个
+2026-05-30 09:26:49,098 - INFO - === 执行完成 ===
