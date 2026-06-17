@@ -57710,3 +57710,29 @@
 2026-06-17 11:52:48,009 - INFO - 分片发送成功: 📢 2026-06-17 安全资讯 (+99篇)
 2026-06-17 11:52:48,010 - INFO - 处理结果: 新增 99 个, 总匹配 99 个, 跳过 199 个
 2026-06-17 11:52:48,010 - INFO - === 执行完成 ===
+2026-06-17 15:43:39,316 - INFO - === 开始执行微信文章归档工具 ===
+2026-06-17 15:43:39,317 - INFO - 数据文件: data.json
+2026-06-17 15:43:39,334 - INFO - 已加载 6311 条历史记录
+2026-06-17 15:43:39,334 - INFO - === 开始今日拉取 ===
+2026-06-17 15:43:39,334 - INFO - 开始获取Doonsec RSS
+2026-06-17 15:43:39,334 - INFO - 目标日期: 2026-06-17
+2026-06-17 15:50:26,367 - ERROR - Doonsec RSS解析失败: HTTPSConnectionPool(host='wechat.doonsec.com', port=443): Max retries exceeded with url: /rss.xml (Caused by ConnectTimeoutError(<HTTPSConnection(host='wechat.doonsec.com', port=443) at 0x7f756fe834f0>, 'Connection to wechat.doonsec.com timed out. (connect timeout=None)'))
+2026-06-17 15:50:26,368 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-06-17.md
+2026-06-17 15:50:26,435 - INFO - ChainReactors md文件下载状态码: 404
+2026-06-17 15:50:26,435 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-06-17.md 状态码: 404
+2026-06-17 15:50:26,435 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-06-17.md
+2026-06-17 15:50:26,527 - INFO - BruceFeIix md文件下载状态码: 200
+2026-06-17 15:50:26,529 - INFO - BruceFeIix获取到 98 个URL
+2026-06-17 15:50:26,529 - INFO - === 开始处理 2026-06-17 的数据 ===
+2026-06-17 15:50:26,529 - INFO - Doonsec原始数据: 0 个
+2026-06-17 15:50:26,529 - INFO - ChainReactors原始数据: 0 个
+2026-06-17 15:50:26,529 - INFO - BruceFeIix原始数据: 98 个
+2026-06-17 15:50:26,529 - INFO - 去重后共 62 个URL待处理，跳过 36 个重复URL
+2026-06-17 15:50:26,529 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 62 个
+2026-06-17 15:50:26,529 - INFO - === 开始关键词过滤 ===
+2026-06-17 15:50:26,532 - INFO - 关键词过滤: 匹配 0 个，跳过 62 个
+2026-06-17 15:50:26,533 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-06-17 15:50:26,533 - INFO - === 更新data.json ===
+2026-06-17 15:50:26,581 - INFO - 已更新data.json，添加了 0 个URL
+2026-06-17 15:50:26,581 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 98 个
+2026-06-17 15:50:26,581 - INFO - === 执行完成 ===
