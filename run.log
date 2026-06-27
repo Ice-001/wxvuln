@@ -58628,3 +58628,31 @@
 2026-06-27 09:31:10,997 - INFO - 分片发送成功: 📢 2026-06-27 安全资讯 (+32篇)
 2026-06-27 09:31:10,999 - INFO - 处理结果: 新增 32 个, 总匹配 32 个, 跳过 225 个
 2026-06-27 09:31:10,999 - INFO - === 执行完成 ===
+2026-06-27 13:51:42,940 - INFO - === 开始执行微信文章归档工具 ===
+2026-06-27 13:51:42,941 - INFO - 数据文件: data.json
+2026-06-27 13:51:42,957 - INFO - 已加载 7035 条历史记录
+2026-06-27 13:51:42,958 - INFO - === 开始今日拉取 ===
+2026-06-27 13:51:42,958 - INFO - 开始获取Doonsec RSS
+2026-06-27 13:51:42,958 - INFO - 目标日期: 2026-06-27
+2026-06-27 13:51:44,943 - INFO - Doonsec RSS请求成功
+2026-06-27 13:51:44,944 - INFO - RSS中共有 200 个条目
+2026-06-27 13:51:44,945 - INFO - Doonsec获取到 82 个2026-06-27的微信文章URL
+2026-06-27 13:51:44,946 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-06-27.md
+2026-06-27 13:51:45,003 - INFO - ChainReactors md文件下载状态码: 404
+2026-06-27 13:51:45,003 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-06-27.md 状态码: 404
+2026-06-27 13:51:45,004 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-06-27.md
+2026-06-27 13:51:45,061 - INFO - BruceFeIix md文件下载状态码: 200
+2026-06-27 13:51:45,062 - INFO - BruceFeIix获取到 175 个URL
+2026-06-27 13:51:45,062 - INFO - === 开始处理 2026-06-27 的数据 ===
+2026-06-27 13:51:45,062 - INFO - Doonsec原始数据: 82 个
+2026-06-27 13:51:45,062 - INFO - ChainReactors原始数据: 0 个
+2026-06-27 13:51:45,063 - INFO - BruceFeIix原始数据: 175 个
+2026-06-27 13:51:45,063 - INFO - 去重后共 148 个URL待处理，跳过 109 个重复URL
+2026-06-27 13:51:45,063 - INFO - 去重后统计 - Doonsec: 53 个, ChainReactors: 0 个, BruceFeIix: 95 个
+2026-06-27 13:51:45,063 - INFO - === 开始关键词过滤 ===
+2026-06-27 13:51:45,071 - INFO - 关键词过滤: 匹配 0 个，跳过 148 个
+2026-06-27 13:51:45,071 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-06-27 13:51:45,071 - INFO - === 更新data.json ===
+2026-06-27 13:51:45,125 - INFO - 已更新data.json，添加了 0 个URL
+2026-06-27 13:51:45,125 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 257 个
+2026-06-27 13:51:45,125 - INFO - === 执行完成 ===
