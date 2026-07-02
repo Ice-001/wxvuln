@@ -59042,3 +59042,36 @@
 2026-07-02 05:05:40,471 - INFO - 已更新data.json，添加了 0 个URL
 2026-07-02 05:05:40,471 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 0 个
 2026-07-02 05:05:40,471 - INFO - === 执行完成 ===
+2026-07-02 10:12:04,010 - INFO - === 开始执行微信文章归档工具 ===
+2026-07-02 10:12:04,011 - INFO - 数据文件: data.json
+2026-07-02 10:12:04,029 - INFO - 已加载 7429 条历史记录
+2026-07-02 10:12:04,029 - INFO - === 开始今日拉取 ===
+2026-07-02 10:12:04,029 - INFO - 开始获取Doonsec RSS
+2026-07-02 10:12:04,029 - INFO - 目标日期: 2026-07-02
+2026-07-02 10:12:06,275 - INFO - Doonsec RSS请求成功
+2026-07-02 10:12:06,276 - INFO - RSS中共有 200 个条目
+2026-07-02 10:12:06,277 - INFO - Doonsec获取到 180 个2026-07-02的微信文章URL
+2026-07-02 10:12:06,278 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-02.md
+2026-07-02 10:12:06,374 - INFO - ChainReactors md文件下载状态码: 404
+2026-07-02 10:12:06,374 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-02.md 状态码: 404
+2026-07-02 10:12:06,374 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-07-02.md
+2026-07-02 10:12:06,529 - INFO - BruceFeIix md文件下载状态码: 200
+2026-07-02 10:12:06,531 - INFO - BruceFeIix获取到 162 个URL
+2026-07-02 10:12:06,531 - INFO - === 开始处理 2026-07-02 的数据 ===
+2026-07-02 10:12:06,531 - INFO - Doonsec原始数据: 180 个
+2026-07-02 10:12:06,531 - INFO - ChainReactors原始数据: 0 个
+2026-07-02 10:12:06,531 - INFO - BruceFeIix原始数据: 162 个
+2026-07-02 10:12:06,532 - INFO - 去重后共 307 个URL待处理，跳过 35 个重复URL
+2026-07-02 10:12:06,532 - INFO - 去重后统计 - Doonsec: 180 个, ChainReactors: 0 个, BruceFeIix: 127 个
+2026-07-02 10:12:06,532 - INFO - === 开始关键词过滤 ===
+2026-07-02 10:12:06,551 - INFO - 关键词过滤: 匹配 76 个，跳过 231 个
+2026-07-02 10:12:06,551 - INFO - 关键词过滤后统计 - Doonsec: 59 个, ChainReactors: 0 个, BruceFeIix: 17 个
+2026-07-02 10:12:06,566 - INFO - 新增 76 个URL
+2026-07-02 10:12:06,569 - INFO - 已追加内容到报告: md/2026/2026-07/2026-07-02.md
+2026-07-02 10:12:06,569 - INFO - === 更新data.json ===
+2026-07-02 10:12:06,623 - INFO - 已更新data.json，添加了 76 个URL
+2026-07-02 10:12:06,623 - INFO - 开始 send_dingtalk_notification
+2026-07-02 10:12:06,623 - INFO - robot_url 生成结果: True
+2026-07-02 10:12:07,355 - INFO - 分片发送成功: 📢 2026-07-02 安全资讯 (+76篇)
+2026-07-02 10:12:07,356 - INFO - 处理结果: 新增 76 个, 总匹配 76 个, 跳过 266 个
+2026-07-02 10:12:07,356 - INFO - === 执行完成 ===
