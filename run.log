@@ -59649,3 +59649,29 @@
 2026-07-08 09:28:08,879 - INFO - 分片发送成功: 📢 2026-07-08 安全资讯 (+21篇)
 2026-07-08 09:28:08,880 - INFO - 处理结果: 新增 21 个, 总匹配 21 个, 跳过 100 个
 2026-07-08 09:28:08,881 - INFO - === 执行完成 ===
+2026-07-08 14:24:06,924 - INFO - === 开始执行微信文章归档工具 ===
+2026-07-08 14:24:06,924 - INFO - 数据文件: data.json
+2026-07-08 14:24:06,944 - INFO - 已加载 7931 条历史记录
+2026-07-08 14:24:06,944 - INFO - === 开始今日拉取 ===
+2026-07-08 14:24:06,944 - INFO - 开始获取Doonsec RSS
+2026-07-08 14:24:06,944 - INFO - 目标日期: 2026-07-08
+2026-07-08 14:24:11,106 - ERROR - Doonsec RSS解析失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-07-08 14:24:11,106 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-08.md
+2026-07-08 14:24:11,162 - INFO - ChainReactors md文件下载状态码: 404
+2026-07-08 14:24:11,162 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-08.md 状态码: 404
+2026-07-08 14:24:11,162 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-07-08.md
+2026-07-08 14:24:11,214 - INFO - BruceFeIix md文件下载状态码: 200
+2026-07-08 14:24:11,215 - INFO - BruceFeIix获取到 121 个URL
+2026-07-08 14:24:11,215 - INFO - === 开始处理 2026-07-08 的数据 ===
+2026-07-08 14:24:11,215 - INFO - Doonsec原始数据: 0 个
+2026-07-08 14:24:11,215 - INFO - ChainReactors原始数据: 0 个
+2026-07-08 14:24:11,215 - INFO - BruceFeIix原始数据: 121 个
+2026-07-08 14:24:11,215 - INFO - 去重后共 72 个URL待处理，跳过 49 个重复URL
+2026-07-08 14:24:11,215 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 72 个
+2026-07-08 14:24:11,215 - INFO - === 开始关键词过滤 ===
+2026-07-08 14:24:11,220 - INFO - 关键词过滤: 匹配 0 个，跳过 72 个
+2026-07-08 14:24:11,220 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-07-08 14:24:11,220 - INFO - === 更新data.json ===
+2026-07-08 14:24:11,279 - INFO - 已更新data.json，添加了 0 个URL
+2026-07-08 14:24:11,279 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 121 个
+2026-07-08 14:24:11,280 - INFO - === 执行完成 ===
