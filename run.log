@@ -59843,3 +59843,31 @@
 2026-07-10 10:25:49,775 - INFO - 分片发送成功: 📢 2026-07-10 安全资讯 (+26篇)
 2026-07-10 10:25:49,776 - INFO - 处理结果: 新增 26 个, 总匹配 26 个, 跳过 224 个
 2026-07-10 10:25:49,776 - INFO - === 执行完成 ===
+2026-07-10 14:36:17,765 - INFO - === 开始执行微信文章归档工具 ===
+2026-07-10 14:36:17,766 - INFO - 数据文件: data.json
+2026-07-10 14:36:17,786 - INFO - 已加载 8089 条历史记录
+2026-07-10 14:36:17,786 - INFO - === 开始今日拉取 ===
+2026-07-10 14:36:17,786 - INFO - 开始获取Doonsec RSS
+2026-07-10 14:36:17,786 - INFO - 目标日期: 2026-07-10
+2026-07-10 14:36:19,573 - INFO - Doonsec RSS请求成功
+2026-07-10 14:36:19,574 - INFO - RSS中共有 200 个条目
+2026-07-10 14:36:19,574 - INFO - Doonsec获取到 111 个2026-07-10的微信文章URL
+2026-07-10 14:36:19,575 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-10.md
+2026-07-10 14:36:19,705 - INFO - ChainReactors md文件下载状态码: 404
+2026-07-10 14:36:19,705 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-10.md 状态码: 404
+2026-07-10 14:36:19,705 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-07-10.md
+2026-07-10 14:36:19,855 - INFO - BruceFeIix md文件下载状态码: 200
+2026-07-10 14:36:19,856 - INFO - BruceFeIix获取到 139 个URL
+2026-07-10 14:36:19,856 - INFO - === 开始处理 2026-07-10 的数据 ===
+2026-07-10 14:36:19,856 - INFO - Doonsec原始数据: 111 个
+2026-07-10 14:36:19,856 - INFO - ChainReactors原始数据: 0 个
+2026-07-10 14:36:19,856 - INFO - BruceFeIix原始数据: 139 个
+2026-07-10 14:36:19,856 - INFO - 去重后共 149 个URL待处理，跳过 101 个重复URL
+2026-07-10 14:36:19,856 - INFO - 去重后统计 - Doonsec: 73 个, ChainReactors: 0 个, BruceFeIix: 76 个
+2026-07-10 14:36:19,856 - INFO - === 开始关键词过滤 ===
+2026-07-10 14:36:19,864 - INFO - 关键词过滤: 匹配 0 个，跳过 149 个
+2026-07-10 14:36:19,864 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-07-10 14:36:19,864 - INFO - === 更新data.json ===
+2026-07-10 14:36:19,923 - INFO - 已更新data.json，添加了 0 个URL
+2026-07-10 14:36:19,923 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 250 个
+2026-07-10 14:36:19,924 - INFO - === 执行完成 ===
