@@ -60667,3 +60667,34 @@
 2026-07-19 04:27:37,968 - INFO - 已更新data.json，添加了 0 个URL
 2026-07-19 04:27:37,968 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 0 个
 2026-07-19 04:27:37,968 - INFO - === 执行完成 ===
+2026-07-19 09:07:07,947 - INFO - === 开始执行微信文章归档工具 ===
+2026-07-19 09:07:07,947 - INFO - 数据文件: data.json
+2026-07-19 09:07:07,968 - INFO - 已加载 8637 条历史记录
+2026-07-19 09:07:07,968 - INFO - === 开始今日拉取 ===
+2026-07-19 09:07:07,968 - INFO - 开始获取Doonsec RSS
+2026-07-19 09:07:07,968 - INFO - 目标日期: 2026-07-19
+2026-07-19 09:07:09,804 - INFO - Doonsec RSS请求成功
+2026-07-19 09:07:09,806 - INFO - RSS中共有 200 个条目
+2026-07-19 09:07:09,806 - INFO - Doonsec获取到 26 个2026-07-19的微信文章URL
+2026-07-19 09:07:09,807 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-19.md
+2026-07-19 09:07:09,889 - INFO - ChainReactors md文件下载状态码: 404
+2026-07-19 09:07:09,889 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-07-19.md 状态码: 404
+2026-07-19 09:07:09,890 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-07-19.md
+2026-07-19 09:07:09,972 - INFO - BruceFeIix md文件下载状态码: 200
+2026-07-19 09:07:09,973 - INFO - BruceFeIix获取到 98 个URL
+2026-07-19 09:07:09,974 - INFO - === 开始处理 2026-07-19 的数据 ===
+2026-07-19 09:07:09,974 - INFO - Doonsec原始数据: 26 个
+2026-07-19 09:07:09,974 - INFO - ChainReactors原始数据: 0 个
+2026-07-19 09:07:09,974 - INFO - BruceFeIix原始数据: 98 个
+2026-07-19 09:07:09,974 - INFO - 去重后共 103 个URL待处理，跳过 21 个重复URL
+2026-07-19 09:07:09,974 - INFO - 去重后统计 - Doonsec: 26 个, ChainReactors: 0 个, BruceFeIix: 77 个
+2026-07-19 09:07:09,974 - INFO - === 开始关键词过滤 ===
+2026-07-19 09:07:09,979 - INFO - 关键词过滤: 匹配 11 个，跳过 92 个
+2026-07-19 09:07:09,979 - INFO - 关键词过滤后统计 - Doonsec: 5 个, ChainReactors: 0 个, BruceFeIix: 6 个
+2026-07-19 09:07:10,073 - INFO - 新增 11 个URL
+2026-07-19 09:07:10,073 - INFO - 已追加内容到报告: md/2026/2026-07/2026-07-19.md
+2026-07-19 09:07:10,073 - INFO - === 更新data.json ===
+2026-07-19 09:07:10,135 - INFO - 已更新data.json，添加了 11 个URL
+2026-07-19 09:07:10,135 - INFO - 本次无AI安全/数据安全/安全合规类新增文章，跳过钉钉通知
+2026-07-19 09:07:10,135 - INFO - 处理结果: 新增 11 个, 总匹配 11 个, 跳过 113 个
+2026-07-19 09:07:10,135 - INFO - === 执行完成 ===
