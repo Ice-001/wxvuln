@@ -62080,3 +62080,29 @@
 2026-08-02 09:11:51,705 - INFO - 分片发送成功: 📢 2026-08-02 安全资讯 (+8篇)
 2026-08-02 09:11:51,706 - INFO - 处理结果: 新增 8 个, 总匹配 8 个, 跳过 54 个
 2026-08-02 09:11:51,706 - INFO - === 执行完成 ===
+2026-08-02 13:36:25,352 - INFO - === 开始执行微信文章归档工具 ===
+2026-08-02 13:36:25,353 - INFO - 数据文件: data.json
+2026-08-02 13:36:25,381 - INFO - 已加载 9157 条历史记录
+2026-08-02 13:36:25,381 - INFO - === 开始今日拉取 ===
+2026-08-02 13:36:25,381 - INFO - 开始获取Doonsec RSS
+2026-08-02 13:36:25,381 - INFO - 目标日期: 2026-08-02
+2026-08-02 13:36:27,793 - ERROR - Doonsec RSS解析失败: Response ended prematurely
+2026-08-02 13:36:27,793 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-08-02.md
+2026-08-02 13:36:27,864 - INFO - ChainReactors md文件下载状态码: 404
+2026-08-02 13:36:27,864 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-08-02.md 状态码: 404
+2026-08-02 13:36:27,864 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-08-02.md
+2026-08-02 13:36:27,934 - INFO - BruceFeIix md文件下载状态码: 200
+2026-08-02 13:36:27,935 - INFO - BruceFeIix获取到 62 个URL
+2026-08-02 13:36:27,935 - INFO - === 开始处理 2026-08-02 的数据 ===
+2026-08-02 13:36:27,935 - INFO - Doonsec原始数据: 0 个
+2026-08-02 13:36:27,935 - INFO - ChainReactors原始数据: 0 个
+2026-08-02 13:36:27,935 - INFO - BruceFeIix原始数据: 62 个
+2026-08-02 13:36:27,935 - INFO - 去重后共 43 个URL待处理，跳过 19 个重复URL
+2026-08-02 13:36:27,935 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 43 个
+2026-08-02 13:36:27,935 - INFO - === 开始关键词过滤 ===
+2026-08-02 13:36:27,937 - INFO - 关键词过滤: 匹配 0 个，跳过 43 个
+2026-08-02 13:36:27,937 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-08-02 13:36:27,938 - INFO - === 更新data.json ===
+2026-08-02 13:36:27,998 - INFO - 已更新data.json，添加了 0 个URL
+2026-08-02 13:36:27,998 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 62 个
+2026-08-02 13:36:27,998 - INFO - === 执行完成 ===
