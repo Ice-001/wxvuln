@@ -62852,3 +62852,29 @@
 2026-08-10 13:16:48,101 - INFO - 分片发送成功: 📢 2026-08-10 安全资讯 (+8篇)
 2026-08-10 13:16:48,102 - INFO - 处理结果: 新增 8 个, 总匹配 8 个, 跳过 52 个
 2026-08-10 13:16:48,102 - INFO - === 执行完成 ===
+2026-08-11 03:05:42,524 - INFO - === 开始执行微信文章归档工具 ===
+2026-08-11 03:05:42,525 - INFO - 数据文件: data.json
+2026-08-11 03:05:42,550 - INFO - 已加载 9395 条历史记录
+2026-08-11 03:05:42,550 - INFO - === 开始今日拉取 ===
+2026-08-11 03:05:42,550 - INFO - 开始获取Doonsec RSS
+2026-08-11 03:05:42,550 - INFO - 目标日期: 2026-08-11
+2026-08-11 03:06:04,740 - ERROR - Doonsec RSS解析失败: ('Connection aborted.', RemoteDisconnected('Remote end closed connection without response'))
+2026-08-11 03:06:04,740 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-08-11.md
+2026-08-11 03:06:04,842 - INFO - ChainReactors md文件下载状态码: 404
+2026-08-11 03:06:04,842 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-08-11.md 状态码: 404
+2026-08-11 03:06:04,842 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-08-11.md
+2026-08-11 03:06:04,944 - INFO - BruceFeIix md文件下载状态码: 404
+2026-08-11 03:06:04,944 - WARNING - BruceFeIix md文件下载失败: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-08-11.md 状态码: 404
+2026-08-11 03:06:04,944 - INFO - === 开始处理 2026-08-11 的数据 ===
+2026-08-11 03:06:04,944 - INFO - Doonsec原始数据: 0 个
+2026-08-11 03:06:04,944 - INFO - ChainReactors原始数据: 0 个
+2026-08-11 03:06:04,944 - INFO - BruceFeIix原始数据: 0 个
+2026-08-11 03:06:04,945 - INFO - 去重后共 0 个URL待处理，跳过 0 个重复URL
+2026-08-11 03:06:04,945 - INFO - 去重后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-08-11 03:06:04,945 - INFO - === 开始关键词过滤 ===
+2026-08-11 03:06:04,945 - INFO - 关键词过滤: 匹配 0 个，跳过 0 个
+2026-08-11 03:06:04,945 - INFO - 关键词过滤后统计 - Doonsec: 0 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-08-11 03:06:04,945 - INFO - === 更新data.json ===
+2026-08-11 03:06:05,018 - INFO - 已更新data.json，添加了 0 个URL
+2026-08-11 03:06:05,019 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 0 个
+2026-08-11 03:06:05,019 - INFO - === 执行完成 ===
