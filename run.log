@@ -67934,3 +67934,36 @@
 2026-10-18 15:46:45,716 - INFO - 已更新data.json，添加了 0 个URL
 2026-10-18 15:46:45,716 - INFO - 处理结果: 新增 0 个, 总匹配 0 个, 跳过 15 个
 2026-10-18 15:46:45,717 - INFO - === 执行完成 ===
+2026-10-19 05:53:06,861 - INFO - === 开始执行微信文章归档工具 ===
+2026-10-19 05:53:06,862 - INFO - 数据文件: data.json
+2026-10-19 05:53:06,895 - INFO - 已加载 13431 条历史记录
+2026-10-19 05:53:06,895 - INFO - === 开始今日拉取 ===
+2026-10-19 05:53:06,895 - INFO - 开始获取Doonsec RSS
+2026-10-19 05:53:06,895 - INFO - 目标日期: 2026-10-19
+2026-10-19 05:53:09,023 - INFO - Doonsec RSS请求成功
+2026-10-19 05:53:09,024 - INFO - RSS中共有 200 个条目
+2026-10-19 05:53:09,025 - INFO - Doonsec获取到 165 个2026-10-19的微信文章URL
+2026-10-19 05:53:09,026 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-10-19.md
+2026-10-19 05:53:09,103 - INFO - ChainReactors md文件下载状态码: 404
+2026-10-19 05:53:09,103 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-10-19.md 状态码: 404
+2026-10-19 05:53:09,103 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-10-19.md
+2026-10-19 05:53:09,178 - INFO - BruceFeIix md文件下载状态码: 404
+2026-10-19 05:53:09,179 - WARNING - BruceFeIix md文件下载失败: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-10-19.md 状态码: 404
+2026-10-19 05:53:09,179 - INFO - === 开始处理 2026-10-19 的数据 ===
+2026-10-19 05:53:09,179 - INFO - Doonsec原始数据: 165 个
+2026-10-19 05:53:09,179 - INFO - ChainReactors原始数据: 0 个
+2026-10-19 05:53:09,179 - INFO - BruceFeIix原始数据: 0 个
+2026-10-19 05:53:09,179 - INFO - 去重后共 165 个URL待处理，跳过 0 个重复URL
+2026-10-19 05:53:09,180 - INFO - 去重后统计 - Doonsec: 165 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-10-19 05:53:09,180 - INFO - === 开始关键词过滤 ===
+2026-10-19 05:53:09,185 - INFO - 关键词过滤: 匹配 67 个，跳过 98 个
+2026-10-19 05:53:09,186 - INFO - 关键词过滤后统计 - Doonsec: 67 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-10-19 05:53:09,203 - INFO - 新增 67 个URL
+2026-10-19 05:53:09,206 - INFO - 已追加内容到报告: md/2026/2026-10/2026-10-19.md
+2026-10-19 05:53:09,206 - INFO - === 更新data.json ===
+2026-10-19 05:53:09,304 - INFO - 已更新data.json，添加了 67 个URL
+2026-10-19 05:53:09,304 - INFO - 开始 send_dingtalk_notification
+2026-10-19 05:53:09,305 - INFO - robot_url 生成结果: True
+2026-10-19 05:53:10,118 - INFO - 分片发送成功: 📢 2026-10-19 安全资讯 (+67篇)
+2026-10-19 05:53:10,119 - INFO - 处理结果: 新增 67 个, 总匹配 67 个, 跳过 98 个
+2026-10-19 05:53:10,119 - INFO - === 执行完成 ===
