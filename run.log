@@ -68135,3 +68135,36 @@
 2026-10-21 12:48:27,342 - INFO - 分片发送成功: 📢 2026-10-21 安全资讯 (+109篇)
 2026-10-21 12:48:27,343 - INFO - 处理结果: 新增 109 个, 总匹配 109 个, 跳过 173 个
 2026-10-21 12:48:27,343 - INFO - === 执行完成 ===
+2026-10-22 05:51:59,043 - INFO - === 开始执行微信文章归档工具 ===
+2026-10-22 05:51:59,044 - INFO - 数据文件: data.json
+2026-10-22 05:51:59,075 - INFO - 已加载 13887 条历史记录
+2026-10-22 05:51:59,075 - INFO - === 开始今日拉取 ===
+2026-10-22 05:51:59,075 - INFO - 开始获取Doonsec RSS
+2026-10-22 05:51:59,075 - INFO - 目标日期: 2026-10-22
+2026-10-22 05:52:00,859 - INFO - Doonsec RSS请求成功
+2026-10-22 05:52:00,860 - INFO - RSS中共有 200 个条目
+2026-10-22 05:52:00,860 - INFO - Doonsec获取到 200 个2026-10-22的微信文章URL
+2026-10-22 05:52:00,861 - INFO - ChainReactors md文件URL: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-10-22.md
+2026-10-22 05:52:01,019 - INFO - ChainReactors md文件下载状态码: 404
+2026-10-22 05:52:01,020 - WARNING - ChainReactors md文件下载失败: https://raw.githubusercontent.com/chainreactors/picker/refs/heads/master/archive/daily/2026/2026-10-22.md 状态码: 404
+2026-10-22 05:52:01,020 - INFO - BruceFeIix md文件URL: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-10-22.md
+2026-10-22 05:52:01,158 - INFO - BruceFeIix md文件下载状态码: 404
+2026-10-22 05:52:01,159 - WARNING - BruceFeIix md文件下载失败: https://raw.githubusercontent.com/BruceFeIix/picker/refs/heads/master/archive/daily/2026/2026-10-22.md 状态码: 404
+2026-10-22 05:52:01,159 - INFO - === 开始处理 2026-10-22 的数据 ===
+2026-10-22 05:52:01,159 - INFO - Doonsec原始数据: 200 个
+2026-10-22 05:52:01,159 - INFO - ChainReactors原始数据: 0 个
+2026-10-22 05:52:01,159 - INFO - BruceFeIix原始数据: 0 个
+2026-10-22 05:52:01,159 - INFO - 去重后共 200 个URL待处理，跳过 0 个重复URL
+2026-10-22 05:52:01,159 - INFO - 去重后统计 - Doonsec: 200 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-10-22 05:52:01,159 - INFO - === 开始关键词过滤 ===
+2026-10-22 05:52:01,164 - INFO - 关键词过滤: 匹配 111 个，跳过 89 个
+2026-10-22 05:52:01,164 - INFO - 关键词过滤后统计 - Doonsec: 111 个, ChainReactors: 0 个, BruceFeIix: 0 个
+2026-10-22 05:52:01,225 - INFO - 新增 111 个URL
+2026-10-22 05:52:01,228 - INFO - 已追加内容到报告: md/2026/2026-10/2026-10-22.md
+2026-10-22 05:52:01,228 - INFO - === 更新data.json ===
+2026-10-22 05:52:01,318 - INFO - 已更新data.json，添加了 111 个URL
+2026-10-22 05:52:01,318 - INFO - 开始 send_dingtalk_notification
+2026-10-22 05:52:01,319 - INFO - robot_url 生成结果: True
+2026-10-22 05:52:02,530 - INFO - 分片发送成功: 📢 2026-10-22 安全资讯 (+111篇)
+2026-10-22 05:52:02,530 - INFO - 处理结果: 新增 111 个, 总匹配 111 个, 跳过 89 个
+2026-10-22 05:52:02,531 - INFO - === 执行完成 ===
